@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The GPS Framework — New Work by Design</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --fg: #1A1A18;
+    --muted: #8A8A82;
+    --border: #E0E0D8;
+    --cell-bg: #FFFFFF;
+    --step-color: #9A9A94;
+
+    /* GPS / Infinite accent */
+    --accent: #2D5A3D;
+    --accent-bg: #E8F0EB;
+    --accent-infinite: #2D5A3D;
+    --tag-infinite: #E8F0EB;
+
+    /* Cycle / OKR accent */
+    --accent-cycle: #4A6FA5;
+    --accent-cycle-bg: #E8EEF5;
+    --tag-cycle: #E8EEF5;
+    --okr: #4A6FA5;
+    --okr-bg: #E8EEF5;
+
+    /* Immediate / Shape Up accent */
+    --accent-imm: #9B5E3C;
+    --accent-imm-bg: #F5EDE8;
+    --accent-immediate: #9B5E3C;
+    --tag-immediate: #F5EDE8;
+    --shapeup: #9B5E3C;
+    --shapeup-bg: #F5EDE8;
+
+    /* Comparison: GPS alias */
+    --gps: #2D5A3D;
+    --gps-bg: #E8F0EB;
+
+    /* EOS accent */
+    --eos: #7A5B8A;
+    --eos-bg: #F0EAF3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    padding: 0;
+    line-height: 1.6;
+  }
+
+  /* ═══════ NAVIGATION ═══════ */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    height: 48px;
+  }
+
+  .nav-brand {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.3px;
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 4px;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: all 0.15s;
+  }
+
+  .nav-links a:hover {
+    color: var(--fg);
+    background: var(--cell-bg);
+  }
+
+  /* ═══════ SECTION BREAKS ═══════ */
+  .section-break {
+    border: none;
+    border-top: 2px solid var(--border);
+    margin: 0;
+  }
+
+  section {
+    padding: 40px 32px 56px;
+  }
+
+  /* Container widths per section */
+  .container-wide { max-width: 1200px; margin: 0 auto; }
+  .container-narrow { max-width: 900px; margin: 0 auto; }
+
+  /* ═══════ SHARED TYPOGRAPHY ═══════ */
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 56px;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 32px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 14px;
+    margin-bottom: 12px;
+    line-height: 1.65;
+    color: #3A3A34;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 48px 0 0 0;
+  }
+
+  /* ═══════ OVERVIEW: Anchor box ═══════ */
+  .anchor {
+    margin-bottom: 48px;
+    padding: 16px 20px;
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ═══════ OVERVIEW: Table ═══════ */
+  .gps-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 2px;
+  }
+
+  .gps-table thead th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--muted);
+    font-weight: 500;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .gps-table thead th:first-child { width: 180px; }
+
+  .gps-table tbody td {
+    padding: 14px 16px;
+    vertical-align: top;
+    font-size: 14px;
+    background: var(--cell-bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .gps-table tbody tr:last-child td { border-bottom: none; }
+
+  .level-cell { position: relative; }
+
+  .level-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .level-tag.infinite { background: var(--tag-infinite); color: var(--accent-infinite); }
+  .level-tag.cycle { background: var(--tag-cycle); color: var(--accent-cycle); }
+  .level-tag.immediate { background: var(--tag-immediate); color: var(--accent-immediate); }
+
+  .time-scale { display: block; margin-top: 8px; }
+
+  .stability-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .stability-badge.rare { background: var(--tag-infinite); color: var(--accent-infinite); }
+  .stability-badge.cycle-len { background: var(--tag-cycle); color: var(--accent-cycle); }
+  .stability-badge.hours { background: var(--tag-immediate); color: var(--accent-immediate); }
+
+  .level-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  .cell-desc { color: #4A4A44; line-height: 1.55; }
+  .cell-ref { font-style: italic; color: var(--muted); }
+
+  .cell-format {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .cell-example {
+    margin-top: 8px;
+    padding: 8px 10px;
+    background: var(--bg);
+    border-radius: 4px;
+    font-size: 13px;
+    color: #5A5A54;
+    border-left: 3px solid var(--border);
+  }
+
+  .cell-example.infinite { border-left-color: var(--accent-infinite); }
+  .cell-example.cycle { border-left-color: var(--accent-cycle); }
+  .cell-example.immediate { border-left-color: var(--accent-immediate); }
+
+  /* ═══════ OVERVIEW: Adaptation ═══════ */
+  .adapt-section { margin-top: 48px; margin-bottom: 48px; }
+  .adapt-title { font-size: 14px; font-weight: 700; margin-bottom: 14px; }
+
+  .adapt-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    position: relative;
+  }
+
+  .adapt-step {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+
+  .adapt-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .adapt-text { min-width: 0; }
+  .adapt-label { font-size: 13px; font-weight: 600; line-height: 1.3; }
+  .adapt-desc { font-size: 11px; color: var(--muted); line-height: 1.4; margin-top: 1px; }
+
+  .adapt-connector {
+    width: 36px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .adapt-connector svg { display: block; }
+  .adapt-note { margin-top: 10px; font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ═══════ OVERVIEW: Bottom row ═══════ */
+  .bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  .bottom-box {
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px;
+  }
+
+  .bottom-box-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+
+  .scope-grid {
+    display: grid;
+    grid-template-columns: 100px repeat(3, 1fr);
+    gap: 0;
+    font-size: 12px;
+  }
+
+  .scope-grid-header {
+    padding: 6px 8px;
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .scope-grid-label {
+    padding: 8px 8px;
+    font-weight: 500;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--bg);
+  }
+
+  .scope-grid-cell {
+    padding: 8px 8px;
+    text-align: center;
+    border-bottom: 1px solid var(--bg);
+  }
+
+  .scope-dot {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    line-height: 18px;
+    font-size: 10px;
+    font-weight: 700;
+    color: white;
+  }
+
+  .scope-dot.full { opacity: 1; }
+  .scope-dot.light { opacity: 0.35; }
+  .scope-note { margin-top: 10px; font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  .fn-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  .fn-item strong { color: var(--fg); }
+
+  .fn-marker {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #9A9A94;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ═══════ RUNNING: Cycle loop ═══════ */
+  .cycle-loop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 32px 0;
+  }
+
+  .cycle-phase {
+    text-align: center;
+    padding: 16px 24px;
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .cycle-phase:first-child { border-radius: 6px 0 0 6px; }
+  .cycle-phase:last-child { border-radius: 0 6px 6px 0; }
+  .cycle-phase:not(:first-child) { border-left: none; }
+
+  .cycle-phase .phase-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .cycle-phase.active {
+    background: var(--accent-bg);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .cycle-return {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* ═══════ RUNNING: Step cards ═══════ */
+  .step-track {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .step-card {
+    display: flex;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    background: var(--step-color);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .step-content { min-width: 0; }
+  .step-label { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+
+  .step-gps-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    margin-right: 4px;
+  }
+
+  .step-gps-tag.g { background: var(--accent-bg); color: var(--accent); }
+  .step-gps-tag.p { background: var(--accent-cycle-bg); color: var(--accent-cycle); }
+  .step-gps-tag.s { background: var(--accent-imm-bg); color: var(--accent-imm); }
+
+  .step-question { font-size: 13px; font-style: italic; color: var(--muted); margin-bottom: 2px; }
+  .step-desc { font-size: 13px; color: #4A4A44; line-height: 1.5; }
+
+  /* ═══════ RUNNING: Meeting cards ═══════ */
+  .meeting-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .meeting-card {
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+  }
+
+  .meeting-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .meeting-freq { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-bottom: 10px; }
+  .meeting-desc { font-size: 13px; color: #4A4A44; line-height: 1.5; }
+
+  /* ═══════ RUNNING: Pitch ═══════ */
+  .pitch-box {
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+
+  .pitch-flow { display: flex; gap: 0; margin-top: 12px; }
+
+  .pitch-step {
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+  }
+
+  .pitch-step:first-child { border-radius: 6px 0 0 6px; }
+  .pitch-step:last-child { border-radius: 0 6px 6px 0; }
+  .pitch-step:not(:first-child) { border-left: none; }
+
+  .pitch-step-label { font-weight: 600; font-size: 12px; margin-bottom: 2px; }
+  .pitch-step-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  /* ═══════ RUNNING: Callouts ═══════ */
+  .callout {
+    background: var(--accent-bg);
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    margin: 20px 0;
+    font-size: 13px;
+    color: #3A3A34;
+    line-height: 1.55;
+  }
+
+  .callout strong { color: var(--accent); }
+
+  .callout-gate {
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-imm);
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    margin: 20px 0;
+    font-size: 13px;
+    color: #3A3A34;
+    line-height: 1.55;
+  }
+
+  .callout-gate strong { color: var(--accent-imm); }
+
+  /* ═══════ RUNNING: Dependencies ═══════ */
+  .dep-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin: 24px 0;
+    padding: 20px;
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+
+  .dep-scope { text-align: center; font-size: 13px; font-weight: 600; color: var(--fg); min-width: 100px; }
+  .dep-scope-sub { font-size: 11px; font-weight: 400; color: var(--muted); margin-top: 2px; }
+
+  .dep-arrows {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--step-color);
+    min-width: 160px;
+  }
+
+  .dep-arrow { display: flex; align-items: center; gap: 6px; font-size: 11px; white-space: nowrap; }
+  .dep-arrow span { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+
+  .option-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .option-card {
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+
+  .option-num {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--step-color);
+    color: white;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-align: center;
+    line-height: 20px;
+    margin-bottom: 6px;
+  }
+
+  .option-label { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+  .option-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+  /* ═══════ COMPARISON: Table ═══════ */
+  .comp-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 2px;
+  }
+
+  .comp-table thead th {
+    text-align: left;
+    padding: 12px 14px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--muted);
+    font-weight: 500;
+    border-bottom: 2px solid var(--border);
+    vertical-align: bottom;
+  }
+
+  .comp-table thead th:first-child { width: 160px; }
+
+  .fw-header { display: flex; align-items: center; gap: 8px; }
+
+  .fw-tag {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .fw-tag.gps { background: var(--gps-bg); color: var(--gps); }
+  .fw-tag.okr { background: var(--okr-bg); color: var(--okr); }
+  .fw-tag.shapeup { background: var(--shapeup-bg); color: var(--shapeup); }
+  .fw-tag.eos { background: var(--eos-bg); color: var(--eos); }
+
+  .fw-origin { font-size: 11px; font-weight: 400; color: var(--muted); letter-spacing: 0; text-transform: none; }
+
+  .comp-table tbody td {
+    padding: 12px 14px;
+    vertical-align: top;
+    font-size: 13px;
+    background: var(--cell-bg);
+    border-bottom: 1px solid var(--border);
+    line-height: 1.55;
+  }
+
+  .comp-table tbody tr:last-child td { border-bottom: none; }
+
+  .row-label { font-weight: 600; font-size: 13px; color: var(--fg); }
+  .row-sub { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+
+  .gap { color: var(--muted); font-style: italic; }
+
+  .comp-table tbody td:nth-child(2) { border-left: 3px solid var(--gps); }
+
+  .comp-footer {
+    margin-top: 40px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 800px;
+  }
+
+  .comp-footer strong { color: var(--fg); }
+
+  /* ═══════ RESPONSIVE ═══════ */
+  @media (max-width: 900px) {
+    section { padding: 24px 16px 40px; }
+    .nav { padding: 0 16px; }
+    .gps-table { font-size: 13px; }
+    .gps-table thead th, .gps-table tbody td { padding: 10px 10px; }
+    .comp-table { font-size: 12px; }
+    .comp-table thead th, .comp-table tbody td { padding: 8px 8px; }
+    .adapt-track { flex-direction: column; }
+    .adapt-connector { width: auto; height: 20px; transform: rotate(90deg); }
+    .adapt-step { width: 100%; }
+    .bottom-row { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 700px) {
+    .meeting-grid { grid-template-columns: 1fr; }
+    .option-grid { grid-template-columns: 1fr; }
+    .pitch-flow { flex-direction: column; }
+    .pitch-step { border-radius: 0 !important; border-left: 1px solid var(--border) !important; }
+    .pitch-step:first-child { border-radius: 6px 6px 0 0 !important; }
+    .pitch-step:last-child { border-radius: 0 0 6px 6px !important; }
+    .pitch-step:not(:first-child) { border-top: none; }
+    .cycle-loop { flex-wrap: wrap; justify-content: center; }
+    .dep-visual { flex-direction: column; gap: 12px; }
+    .nav-brand { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- NAVIGATION                                         -->
+<!-- ═══════════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">GPS Framework</div>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#running">Running GPS</a>
+      <a href="#comparison">Comparison</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- SECTION 1: OVERVIEW                                -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="overview">
+<div class="container-wide">
+
+  <h1>Aligning direction with the GPS Framework</h1>
+  <p class="subtitle">From vision to today's task. Same structure, different time scales.</p>
+
+  <div class="anchor">
+    <div style="margin-bottom: 10px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 14px;">
+      GPS asks three questions at three time scales:
+      <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-infinite); display: inline-block;"></span> Infinite</span>
+      <span style="color: var(--muted);">→</span>
+      <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-cycle); display: inline-block;"></span> Cycle</span>
+      <span style="color: var(--muted);">→</span>
+      <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-immediate); display: inline-block;"></span> Immediate</span>
+    </div>
+    <strong><span style="color: #C45D2C; font-size: 16px;">G</span>oal</strong> describes the desired future: <i>Where are we going?</i><br>
+    <strong><span style="color: #C45D2C; font-size: 16px;">P</span>ositioning</strong> measures the observable gap between here and there: <i>Are we there yet?</i><br>
+    <strong><span style="color: #C45D2C; font-size: 16px;">S</span>trategy</strong> resolves trade-offs when multiple routes exist: <i>What are our route preferences?</i>
+  </div>
+
+  <table class="gps-table">
+    <thead>
+      <tr>
+        <th>Time Scale<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">How much time do we invest?</span></th>
+        <th>Goal<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">Where are we going?</span></th>
+        <th>Positioning<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">Are we there yet?</span></th>
+        <th>Strategy<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">What are our route preferences?</span></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- INFINITE GPS -->
+      <tr>
+        <td class="level-cell">
+          <span class="level-tag infinite">Infinite GPS</span>
+          <span class="time-scale"><span class="stability-badge rare">near-permanent</span></span>
+          <div class="level-note">Play to keep playing. Long-term direction. Persists across cycles.</div>
+        </td>
+        <td>
+          <div class="cell-desc">How you imagine the future. Currently out of reach but not unimaginable. Never "completed." <span class="cell-ref">(Think: Vision statement.)</span></div>
+          <span class="cell-format">format: plain text</span>
+          <div class="cell-example infinite">"Running any process between people is effortless. The process just works and the history is always there."</div>
+        </td>
+        <td>
+          <div class="cell-desc">The single number that tells you if you're succeeding at your goal. Must be independently observable, not self-reported. <span class="cell-ref">(Think: One Metric That Matters from Lean Startup.)</span></div>
+          <span class="cell-format">format: single metric</span>
+          <div class="cell-example infinite">Total sessions completed. A session = a process that actually happened between real people.</div>
+        </td>
+        <td>
+          <div class="cell-desc">The reinforcing loop that compounds your progress over time. <span class="cell-ref">(Think: Flywheel from Jim Collins' Good to Great.)</span></div>
+          <span class="cell-format">format: visual loop</span>
+          <div class="cell-example infinite">Easy process creation → More sessions → Richer data → Smarter automation → Less admin burden → More processes worth running → …</div>
+        </td>
+      </tr>
+
+      <!-- CYCLE GPS -->
+      <tr>
+        <td class="level-cell">
+          <span class="level-tag cycle">Cycle GPS</span>
+          <span class="time-scale"><span class="stability-badge cycle-len">1 week – 1 year</span></span>
+          <div class="level-note">Play to win this round. Proposed based on expected return, not assigned top-down. Higher uncertainty → shorter cycle.</div>
+        </td>
+        <td>
+          <div class="cell-desc">What you're achieving this cycle. Concrete end state. Derived from the current bottleneck in your Infinite Strategy. <span class="cell-ref">(Think: an OKR objective.)</span></div>
+          <span class="cell-format">format: plain text</span>
+          <div class="cell-example cycle">"Ship public beta with business licensing by end of cycle."</div>
+        </td>
+        <td>
+          <div class="cell-desc">Current and target values on metrics that show the gap. <span class="cell-ref">(Think: OKR key results.)</span></div>
+          <span class="cell-format">format: metrics from → to</span>
+          <div class="cell-example cycle">Live processes: 6 → 18. Organizations: 2 → 5. Billing MVP: no → yes.</div>
+        </td>
+        <td>
+          <div class="cell-desc">What to prioritize when you hit a fork. Not a to-do list. <span class="cell-ref">(Think: strategic bets.)</span></div>
+          <span class="cell-format">format: visual map</span>
+          <div class="cell-example cycle">Map axes: customer segment (small teams → mid-size → enterprise) × adoption depth (exploring → committed → dependent). Focus on the bottom-left: small teams still exploring. Move them upward to committed. Don't move right into enterprise until billing is proven.</div>
+        </td>
+      </tr>
+
+      <!-- IMMEDIATE GPS -->
+      <tr>
+        <td class="level-cell">
+          <span class="level-tag immediate">Immediate GPS</span>
+          <span class="time-scale"><span class="stability-badge hours">hours – days</span></span>
+          <div class="level-note">Execute with autonomy. Written by the person accountable. Writing it is the first step of execution.</div>
+        </td>
+        <td>
+          <div class="cell-desc">What outcome this task produces and why it matters. Links to the cycle strategy it executes. <span class="cell-ref">(Think: a user story.)</span></div>
+          <span class="cell-format">format: plain text</span>
+          <div class="cell-example immediate">"Marketing site explains what we do to a first-time visitor. Unblocks sales conversations that currently require a live demo."</div>
+        </td>
+        <td>
+          <div class="cell-desc">Current state: what concretely exists right now. Done state: what's verifiably different when complete. <span class="cell-ref">(Think: acceptance criteria.)</span></div>
+          <span class="cell-format">format: current → done</span>
+          <div class="cell-example immediate">Current: No public site. Sales require live demo. Done: Site live. Visitor understands what we do and requests access without talking to anyone.</div>
+        </td>
+        <td>
+          <div class="cell-desc">Guardrails, constraints, and reference points that tell the executor what to prioritize, what to avoid, and where to look. Not steps. <span class="cell-ref">(Think: an approach brief.)</span></div>
+          <span class="cell-format">format: guardrails + constraints + references</span>
+          <div class="cell-example immediate">Use strategy docs as content source. Follow brand direction. Lead with "process between people" framing, not technical features. Don't over-promise unshipped capabilities.</div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <!-- Adaptation -->
+  <div class="adapt-section">
+    <div class="adapt-title">When progress stalls, adapt in this order:</div>
+    <div class="adapt-track">
+      <div class="adapt-step">
+        <div class="adapt-num" style="background: #9A9A94;">1</div>
+        <div class="adapt-text">
+          <div class="adapt-label">Change the strategy</div>
+          <div class="adapt-desc">Try a different route. Cheapest to change.</div>
+        </div>
+      </div>
+      <div class="adapt-connector">
+        <svg width="24" height="12" viewBox="0 0 24 12"><path d="M0 6h20m0 0l-4-4m4 4l-4 4" fill="none" stroke="#9A9A94" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="adapt-step">
+        <div class="adapt-num" style="background: #9A9A94;">2</div>
+        <div class="adapt-text">
+          <div class="adapt-label">Adjust the positioning</div>
+          <div class="adapt-desc">Reduce ambition based on what you learned.</div>
+        </div>
+      </div>
+      <div class="adapt-connector">
+        <svg width="24" height="12" viewBox="0 0 24 12"><path d="M0 6h20m0 0l-4-4m4 4l-4 4" fill="none" stroke="#9A9A94" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="adapt-step">
+        <div class="adapt-num" style="background: #9A9A94;">3</div>
+        <div class="adapt-text">
+          <div class="adapt-label">Rethink the goal</div>
+          <div class="adapt-desc">Only if the learnings justify it. Most expensive.</div>
+        </div>
+      </div>
+    </div>
+    <div class="adapt-note">Each step is more expensive than the last, so exhaust the cheaper options first. The team that owns the GPS triggers these changes, not someone above them.</div>
+  </div>
+
+  <!-- Bottom row -->
+  <div class="bottom-row">
+    <div class="bottom-box">
+      <div class="bottom-box-title">How GPS scales</div>
+
+      <div style="font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px;">Scope scales with company size</div>
+      <div style="display: flex; gap: 0; margin-bottom: 16px;">
+        <div style="flex: 1; padding: 8px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px 0 0 6px; font-size: 12px;">
+          <div style="font-weight: 600;">1–15 people</div>
+          <div style="color: var(--muted); margin-top: 2px;">team = company</div>
+        </div>
+        <div style="flex: 1; padding: 8px 12px; background: var(--bg); border: 1px solid var(--border); border-left: none; font-size: 12px;">
+          <div style="font-weight: 600;">15–50 people</div>
+          <div style="color: var(--muted); margin-top: 2px;">teams + company</div>
+        </div>
+        <div style="flex: 1; padding: 8px 12px; background: var(--bg); border: 1px solid var(--border); border-left: none; border-radius: 0 6px 6px 0; font-size: 12px;">
+          <div style="font-weight: 600;">50+ people</div>
+          <div style="color: var(--muted); margin-top: 2px;">teams + units + company</div>
+        </div>
+      </div>
+
+      <div class="scope-grid">
+        <div class="scope-grid-header"></div>
+        <div class="scope-grid-header" style="color: var(--accent-infinite);">Infinite</div>
+        <div class="scope-grid-header" style="color: var(--accent-cycle);">Cycle</div>
+        <div class="scope-grid-header" style="color: var(--accent-immediate);">Immediate</div>
+
+        <div class="scope-grid-label">Company</div>
+        <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-infinite);">✓</span></div>
+        <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-cycle);">✓</span></div>
+        <div class="scope-grid-cell"><span class="scope-dot light" style="background: var(--accent-immediate);">○</span></div>
+
+        <div class="scope-grid-label">Unit</div>
+        <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-infinite);">✓</span></div>
+        <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-cycle);">✓</span></div>
+        <div class="scope-grid-cell"><span class="scope-dot light" style="background: var(--accent-immediate);">○</span></div>
+
+        <div class="scope-grid-label">Team</div>
+        <div class="scope-grid-cell"><span class="scope-dot light" style="background: var(--accent-infinite);">○</span></div>
+        <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-cycle);">✓</span></div>
+        <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-immediate);">✓</span></div>
+      </div>
+      <div class="scope-note" style="margin-bottom: 16px;">✓ = typical. ○ = possible. Every scope can have each, but this shows where they naturally concentrate.</div>
+
+      <div style="font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px;">Cycle length scales with maturity</div>
+      <div style="display: flex; gap: 0;">
+        <div style="flex: 1; padding: 8px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px 0 0 6px; font-size: 12px;">
+          <div style="font-weight: 600;">Ideate</div>
+          <div style="color: var(--muted); margin-top: 2px;">1 week</div>
+        </div>
+        <div style="flex: 1; padding: 8px 12px; background: var(--bg); border: 1px solid var(--border); border-left: none; font-size: 12px;">
+          <div style="font-weight: 600;">Validate</div>
+          <div style="color: var(--muted); margin-top: 2px;">1 month</div>
+        </div>
+        <div style="flex: 1; padding: 8px 12px; background: var(--bg); border: 1px solid var(--border); border-left: none; font-size: 12px;">
+          <div style="font-weight: 600;">Scale</div>
+          <div style="color: var(--muted); margin-top: 2px;">1 quarter</div>
+        </div>
+        <div style="flex: 1; padding: 8px 12px; background: var(--bg); border: 1px solid var(--border); border-left: none; border-radius: 0 6px 6px 0; font-size: 12px;">
+          <div style="font-weight: 600;">Mature</div>
+          <div style="color: var(--muted); margin-top: 2px;">1 year</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-box">
+      <div class="bottom-box-title">Principles</div>
+      <div class="fn-item"><div class="fn-marker">01</div><div><strong>Each time scale nests into the one above.</strong> An immediate GPS serves a cycle strategy. A cycle GPS addresses a bottleneck in the infinite strategy. Alignment flows across time scales. Autonomy lives inside them.</div></div>
+      <div class="fn-item"><div class="fn-marker">02</div><div><strong>Each GPS is owned by the scope that holds it.</strong> Ownership means you write it, adapt it, and are accountable for its outcomes.</div></div>
+      <div class="fn-item"><div class="fn-marker">03</div><div><strong>GPS is an alignment tool, not a compliance tool.</strong> The executor writes their own GPS to think clearly before acting. The system makes it visible. Alignment emerges as a side effect, not from reporting upward.</div></div>
+      <div class="fn-item"><div class="fn-marker">04</div><div><strong>Rigidity should match maturity.</strong> Match the stability of your infinite GPS to the stability of your business model. Early on, the vision is a hypothesis. Once you've found what works, the infinite GPS hardens and cycles lengthen.</div></div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<hr class="section-break">
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- SECTION 2: RUNNING GPS                             -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="running">
+<div class="container-narrow">
+
+  <h1>Running the GPS Framework</h1>
+  <p class="subtitle">The operational guide. How to plan, check in, review, and adapt using GPS.</p>
+
+  <p>This guide covers the cycle level, where most of the operational work happens.</p>
+
+  <!-- THE GOAL CYCLE -->
+  <h2>The goal cycle</h2>
+
+  <p>Every cycle follows the same rhythm:</p>
+
+  <div class="cycle-loop">
+    <div class="cycle-phase active">
+      <div class="phase-label">Start of cycle</div>
+      Strategize
+    </div>
+    <div class="cycle-phase">
+      <div class="phase-label">During cycle</div>
+      Check-in
+    </div>
+    <div class="cycle-phase">
+      <div class="phase-label">During cycle</div>
+      Check-in
+    </div>
+    <div class="cycle-phase">
+      <div class="phase-label">End of cycle</div>
+      Review
+    </div>
+  </div>
+  <div class="cycle-return">↩ Review informs next cycle's strategizing session</div>
+
+  <p style="margin-top: 20px;">How often you check in depends on cycle length. A rule of thumb: quarterly cycles use bi-weekly check-ins, yearly cycles use monthly check-ins, and weekly cycles use daily stand-ups.</p>
+
+  <hr class="divider">
+
+  <!-- STRATEGIZING -->
+  <h2>Strategizing</h2>
+
+  <p>At the start of each cycle, re-iterate the GPS from the scope above, then build this cycle's GPS in five steps. The order matters: you start from where you are, not from where you want to be.</p>
+
+  <div class="step-track">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag p">P</span> Positioning (Current)</div>
+        <div class="step-question">"What tells us that we need to leave here and go someplace else?"</div>
+        <div class="step-desc">Identify the metrics that describe where you are right now. This gives you your starting location and tells you what to track.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag g">G</span> Goal</div>
+        <div class="step-question">"What is the value in going there?"</div>
+        <div class="step-desc">Describe the desired destination in plain language. Derived from the current bottleneck in your infinite strategy.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag p">P</span> Positioning (Target)</div>
+        <div class="step-question">"What will tell us that we have arrived or at least made progress?"</div>
+        <div class="step-desc">Set target values for the metrics from step 1. Using the same metrics for start and target ties the journey together. It gives you a story to tell.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag s">S</span> Strategy</div>
+        <div class="step-question">"What is our approach?"</div>
+        <div class="step-desc">Decision guidelines for when you hit a fork in the road. Not a step-by-step plan. Describe visually on a map that shows your market position, intended movement, and boundaries.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag p">P</span> Positioning (Guardrails)</div>
+        <div class="step-question">"How might blindly following this strategy get us into trouble?"</div>
+        <div class="step-desc">Add metrics that prevent gaming. Any single metric incentivizes optimizing that metric at the expense of everything else. Multiple metrics create balance.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout-gate">
+    <strong>The emotional test.</strong> Before finalizing your GPS, ask: would you be genuinely upset if you don't achieve this? Not disappointed. Upset. If the answer is no, you've written a bureaucratic exercise, not a goal. Use emotional language. Say "I want to make this fly" instead of "Prove feasibility." You'll have to repeat yourself many times. Use phrases that come naturally.
+  </div>
+
+  <div class="callout">
+    <strong>Why start with positioning, not the goal?</strong> Because you can't set a meaningful destination without knowing where you are. The current location surfaces the metrics that matter. The goal becomes a response to what those metrics tell you, not a wish disconnected from reality.
+  </div>
+
+  <hr class="divider">
+
+  <!-- CHECK-IN -->
+  <h2>Check-in</h2>
+
+  <p>The purpose of check-ins isn't tracking. It's creating repeated opportunities for the people accountable at each scope to demonstrate that these goals matter. When someone reports being behind, the reaction from the scope above (curious and problem-solving, not punitive but clearly invested) signals whether the GPS is real or paperwork.</p>
+
+  <p>A check-in follows four steps. The order matches the adaptation rule: cheapest change first.</p>
+
+  <div class="step-track">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag p">P</span> Positioning (Current)</div>
+        <div class="step-desc">How much progress have we made? How does the progress relate to the time and effort invested so far?</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag s">S</span> Strategy</div>
+        <div class="step-desc">Considering how far we got and what we learned: is this still the best strategy? Can we adjust to make faster progress?</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag p">P</span> Positioning (Target)</div>
+        <div class="step-desc">Based on what we learned: do our target values still make sense? Do we need to adjust what "arrived" looks like?</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag g">G</span> Goal</div>
+        <div class="step-desc">Based on progress, route changes, and updated targets: is the destination still viable? Do we still want to go there?</div>
+      </div>
+    </div>
+  </div>
+
+  <p>Check-ins serve two purposes: internal course correction and external accountability. You use them to adjust strategy. The scope above uses them to assess whether the investment is on track. If you are significantly off-course, the investment board may offer support, adjust expectations, or reduce scope. Transparency about setbacks builds trust. Hiding problems until the review breaks it.</p>
+
+  <hr class="divider">
+
+  <!-- REVIEW -->
+  <h2>Review</h2>
+
+  <h3>What marks the end of a journey?</h3>
+
+  <p>Four things can end a goal cycle. Only the first one is intuitive. The other three prevent death marches.</p>
+
+  <div class="step-track">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-label">You reached the goal</div>
+        <div class="step-desc">The obvious ending. Target metrics hit. Celebrate and move on.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-label">The battery is drained</div>
+        <div class="step-desc">The cycle ended. Think of cycle length as the charge allocated for this journey. If reaching the destination requires more charge than the value justifies, move on. You get this automatically by defining consistent goal cycles.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-label">You learned you can't reach it</div>
+        <div class="step-desc">Something you discovered during the journey makes the goal unreachable. Continuing is waste. Abort and redirect.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-label">You found something more valuable</div>
+        <div class="step-desc">A discovery during the journey uncovered a goal that matters more. Pivot deliberately, not by drift.</div>
+      </div>
+    </div>
+  </div>
+
+  <p>Using only #1 is the hallmark of a death march: everyone can see it's pointless, but reconsidering the goal isn't part of the process. Adding #2 through #4 is the hallmark of agility. You get #2 from consistent goal cycles. You get #3 and #4 from questioning your goals during check-ins. At the end of a cycle, you may decide to continue with a goal, but that's a deliberate investment decision, not inertia.</p>
+
+  <h3>How to review</h3>
+
+  <p>Once you know which ending you hit, assess what happened and extract learnings for the next round. Same four steps as the check-in, different questions:</p>
+
+  <div class="step-track">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag p">P</span> Positioning</div>
+        <div class="step-desc">How much progress did we make? Did we reach the target values we set during strategizing?</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag s">S</span> Strategy</div>
+        <div class="step-desc">Was this the best strategy to reach the goal? What did we learn that will help us decide on our next strategy?</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag p">P</span> Positioning (Target)</div>
+        <div class="step-desc">Were our targets realistic? What would we set differently knowing what we know now?</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag g">G</span> Goal</div>
+        <div class="step-desc">Based on what we achieved and learned: did we reach the goal? What will help us decide on our next goal?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Celebrate.</strong> Progress on metrics is harder to feel than reaching a tangible milestone. Make both visible. The resulting energy sustains the next cycle better than a sense of "not enough" ever could.
+  </div>
+
+  <h3>Review informs the next investment</h3>
+
+  <p>The review sets the stage for the next cycle's pitch. Those who delivered on their promise earn credibility for bolder asks. Those who missed with good reasons and documented learnings may continue at similar investment levels. A pattern of misses without learning needs a structural conversation, not another pitch.</p>
+
+  <hr class="divider">
+
+  <!-- INVESTMENT PITCHES -->
+  <h2>Cycle goals as investment pitches</h2>
+
+  <p>Goal alignment is bidirectional. The GPS from the scope above cascades down as a frame: here's where we're going, here's where we are, here's our approach. Cycle goals then bubble up as investment pitches: here's what we propose to deliver within that frame, and here's what we need to do it.</p>
+
+  <div class="pitch-box">
+    <div style="font-size: 14px; font-weight: 700; margin-bottom: 4px;">A pitch is a cycle GPS plus an investment ask:</div>
+    <div style="font-size: 13px; color: #4A4A44; line-height: 1.7;">
+      <strong>Goal, Positioning, Strategy:</strong> the cycle GPS, prepared using the five strategizing steps.<br>
+      <strong>Investment ask:</strong> What resources do we need to deliver this?
+    </div>
+  </div>
+
+  <div class="pitch-flow">
+    <div class="pitch-step">
+      <div class="pitch-step-label">1. Context</div>
+      <div class="pitch-step-desc">The scope above shares its GPS.</div>
+    </div>
+    <div class="pitch-step">
+      <div class="pitch-step-label">2. Pitch</div>
+      <div class="pitch-step-desc">You prepare your cycle GPS and investment ask as a proposal.</div>
+    </div>
+    <div class="pitch-step">
+      <div class="pitch-step-label">3. Align</div>
+      <div class="pitch-step-desc">You align your pitch with lateral scopes and the scope above using group consent (no one has a reasoned objection).</div>
+    </div>
+    <div class="pitch-step">
+      <div class="pitch-step-label">4. Promise</div>
+      <div class="pitch-step-desc">An aligned pitch becomes a promise. You own the goal and are accountable for delivering it throughout the cycle.</div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top: 20px;">
+    <strong>Why this works:</strong> The frame comes from above. The conviction comes from within. You can't blame the scope above for unrealistic goals because you proposed them yourself. The scope above can't micromanage execution because they approved the GPS in the pitch, not a detailed plan. The promise enables accountability: the scope above holds the promiser to what they committed to, not to something that was imposed on them.
+  </div>
+
+  <h3>The pitch hierarchy</h3>
+
+  <p>Pitches flow upward through the organizational structure. Team leads pitch to unit leads. Unit leads pitch to company leads. Each scope acts as investment board for the scope below. The frame cascades down. Proposals flow up.</p>
+
+  <h3>Dependencies across scopes</h3>
+
+  <p>Pitches don't happen in a vacuum. A cycle GPS must fit the GPS of the scope above (the super-GPS). Every pitch depends on all three parts of the super-GPS: the goal (pitches must contribute to it), the positioning (pitches must move the metrics), and the strategy (pitches must be coherent with the approach, or explicitly challenge it).</p>
+
+  <div class="dep-visual">
+    <div class="dep-scope">Scope above<div class="dep-scope-sub">Sets the frame</div></div>
+    <div class="dep-arrows">
+      <div class="dep-arrow">↓ <span>GPS cascades as context</span></div>
+      <div class="dep-arrow">↑ <span>Pitches rise as proposals</span></div>
+    </div>
+    <div class="dep-scope">Scope below<div class="dep-scope-sub">Fills the frame</div></div>
+  </div>
+
+  <p>When a pitch doesn't fit, two possibilities: the pitching scope misunderstood the context (clarify and re-pitch), or the pitch reveals a flaw in the super-GPS (surface it and decide whether to adjust). Good pitches don't just fit. They stress-test.</p>
+
+  <p>The dependency also flows upward. When the scope above looks at all pitches together, it must ask: "If all these succeed, will we achieve our super-GPS?" If the answer is no:</p>
+
+  <div class="option-grid">
+    <div class="option-card">
+      <div class="option-num">1</div>
+      <div class="option-label">Stronger pitches</div>
+      <div class="option-desc">Ask scopes below to propose more ambitious goals with corresponding investment asks.</div>
+    </div>
+    <div class="option-card">
+      <div class="option-num">2</div>
+      <div class="option-label">More capacity</div>
+      <div class="option-desc">Fund additional capacity to fill the gap between pitches and super-GPS.</div>
+    </div>
+    <div class="option-card">
+      <div class="option-num">3</div>
+      <div class="option-label">Revise the super-GPS</div>
+      <div class="option-desc">Acknowledge the goal isn't feasible given current capabilities and adjust it honestly.</div>
+    </div>
+  </div>
+
+  <p>The pitch model makes gaps visible and negotiable, instead of the scope above dictating sub-goals that "must" add up and being disappointed when reality intervenes.</p>
+
+  <hr class="divider">
+
+  <!-- KEEPING GPS ALIVE -->
+  <h2>Keeping GPS alive</h2>
+
+  <div class="callout">
+    <strong>The minimum.</strong> If you don't look at and talk about your GPS at least every two weeks, you won't reach your goals. This is the single most common failure mode: goals are formulated with effort, forgotten in a tracking system, and "rediscovered" at the end of the cycle with disappointment.
+  </div>
+
+  <div class="meeting-grid">
+    <div class="meeting-card">
+      <div class="meeting-name">Connect to now</div>
+      <div class="meeting-freq">standups · reviews · demos</div>
+      <div class="meeting-desc">When you review completed work (sprint review, demo), connect it to your GPS: how much did this bring us closer? When you coordinate daily work (standup, sync): how much will today's work move the needle?</div>
+    </div>
+    <div class="meeting-card">
+      <div class="meeting-name">Connect forward</div>
+      <div class="meeting-freq">infinite GPS</div>
+      <div class="meeting-desc">Link your cycle GPS to the infinite GPSs at your scope and above. Talk about both whenever you come together across scopes: all-hands, town halls. People need to see the thread from their daily work to the vision.</div>
+    </div>
+    <div class="meeting-card">
+      <div class="meeting-name">Consult the map frequently</div>
+      <div class="meeting-freq">dashboards · shared tools</div>
+      <div class="meeting-desc">Make checking the dashboard a frequent habit, not a monthly chore. Track goals with the same tool you use for daily work so there's no information break. If you don't have that yet, a spreadsheet works as a crutch. Just know it won't make anyone happy for long.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- GETTING STARTED -->
+  <h2>Getting started</h2>
+
+  <div class="step-track">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-label">Introduce GPS</div>
+        <div class="step-desc">Even if you use OKRs already, don't skip this step. The terminology and the explicit separation of positioning from strategy will change how people think about goals.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-label">Start at the top</div>
+        <div class="step-desc">Define the highest-scope GPS first. Everything else derives from there. If the top isn't clear, nothing below will align.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-label">Set up the rhythm</div>
+        <div class="step-desc">Pick a tool to track goals (ideally the same one used for daily work). Set up recurring meetings for strategizing, check-ins, and reviews at each scope.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-label">Train leads in pitching</div>
+        <div class="step-desc">Create a simple pitch template: cycle GPS (Goal, Positioning, Strategy) and Investment ask. Clarify who acts as investment board at each scope.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <div class="step-label">Facilitate, then step back</div>
+        <div class="step-desc">Support teams by facilitating their first few strategizing sessions. Help them get the rhythm. Then let the process carry itself.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<hr class="section-break">
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- SECTION 3: COMPARISON                              -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="comparison">
+<div class="container-wide">
+
+  <h1>Goal Alignment Frameworks Compared</h1>
+  <p class="subtitle">Four approaches to aligning direction. Same challenge, different trade-offs.</p>
+
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>
+          <div class="fw-header"><span class="fw-tag gps">GPS</span></div>
+          <div class="fw-origin">New Work by Design</div>
+        </th>
+        <th>
+          <div class="fw-header"><span class="fw-tag okr">OKR</span></div>
+          <div class="fw-origin">Intel / Google</div>
+        </th>
+        <th>
+          <div class="fw-header"><span class="fw-tag shapeup">Shape Up</span></div>
+          <div class="fw-origin">Basecamp</div>
+        </th>
+        <th>
+          <div class="fw-header"><span class="fw-tag eos">EOS Rocks</span></div>
+          <div class="fw-origin">Gino Wickman</div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td>
+          <div class="row-label">Core components</div>
+          <div class="row-sub">What you write down</div>
+        </td>
+        <td>Goal + Positioning + Strategy at each time scale</td>
+        <td>Objective + Key Results (+ Initiatives, added later by practitioners)</td>
+        <td>Pitch (problem + appetite + solution boundaries)</td>
+        <td>10-year target → 3-year picture → 1-year plan → 90-day Rocks</td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="row-label">Time scales</div>
+          <div class="row-sub">How far out you look</div>
+        </td>
+        <td>Three: infinite, cycle (1 week–1 year), immediate (hours–days)</td>
+        <td>One: quarterly (sometimes annual)</td>
+        <td>One: fixed 6-week cycles + 2-week cooldown</td>
+        <td>Four: 10-year, 3-year, 1-year, 90-day (executed via Weekly To-Dos)</td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="row-label">Who sets direction</div>
+          <div class="row-sub">Where goals come from</div>
+        </td>
+        <td>Each scope proposes cycle goals as investment pitches. The scope above acts as investment board.</td>
+        <td>Varies. Cascaded top-down, bottom-up, or bidirectional depending on implementation.</td>
+        <td>Leadership selects pitches at the betting table. Anyone can pitch, but leadership decides.</td>
+        <td>Cascaded top-down. Leadership sets company Rocks, departments derive theirs.</td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="row-label">How progress is tracked</div>
+          <div class="row-sub">What tells you where you are</div>
+        </td>
+        <td>Metrics on a spectrum (current → target). One metric at infinite level, multiple at cycle level. Observable states at immediate level.</td>
+        <td>Key Results: measurable outcomes, typically 3–5 per objective. Scored 0–1.0.</td>
+        <td>Hill charts: uphill (figuring out) → downhill (executing). No metrics.</td>
+        <td>Binary: on track / off track. Weekly L10 pulse check.</td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="row-label">Role of strategy</div>
+          <div class="row-sub">How you decide what to do</div>
+        </td>
+        <td>Explicit, separate artifact. Decision guide for forks, not a task list. Described as a visual map.</td>
+        <td class="gap">Not native to the original model. 'Initiatives' are often added, but usually degrade into rigid task lists rather than true strategic guidelines.</td>
+        <td>Implicit in the shaped pitch. Boundaries ("what's in, what's out") guide the team.</td>
+        <td class="gap">Not explicit. The Rock itself acts as both goal and implied strategy.</td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="row-label">Positioning vs. Strategy</div>
+          <div class="row-sub">Are they separated?</div>
+        </td>
+        <td>Explicitly separated. Positioning stays stable as reference point. Strategy adapts freely.</td>
+        <td class="gap">Blurred. Key Results mix "where we are" with "how we get there." No separation.</td>
+        <td>Partially. Appetite sets the constraint. Hill chart tracks confidence, not metrics. Approach is free.</td>
+        <td class="gap">Not separated. Rocks conflate destination and path.</td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="row-label">When things stall</div>
+          <div class="row-sub">What happens when progress stops</div>
+        </td>
+        <td>Explicit sequence: change strategy first → adjust positioning → rethink goal. Cheapest change first.</td>
+        <td>No prescribed adaptation sequence. Check-ins happen but there's no explicit protocol for what to change first.</td>
+        <td>Cut scope, don't extend time. If it doesn't ship, it returns to the pitch pile for re-betting.</td>
+        <td>Surface in weekly L10. IDS process (Identify, Discuss, Solve). Rock stays fixed.</td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="row-label">Cycle length</div>
+          <div class="row-sub">How it adapts</div>
+        </td>
+        <td>Variable: matched to maturity stage. 1 week (ideate) → 1 year (mature).</td>
+        <td>Fixed: quarterly. Some orgs add annual layer.</td>
+        <td>Fixed: 6 weeks. No exceptions.</td>
+        <td>Fixed: 90 days.</td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="row-label">Autonomy model</div>
+          <div class="row-sub">Who decides how</div>
+        </td>
+        <td>High. Executor writes their own GPS. Scope above sets the constraint, everything inside is yours.</td>
+        <td>Depends on implementation. Ranges from heavy top-down cascade to full team ownership.</td>
+        <td>High within cycle. Team has full autonomy over execution. Zero between cycles: betting table decides what's next.</td>
+        <td>Low. Strong accountability culture. Prescriptive meeting structure and cascading priorities.</td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="row-label">Best suited for</div>
+          <div class="row-sub">Path certainty assumed</div>
+        </td>
+        <td>The destination is stable but the path will change. You need to navigate, not just track.</td>
+        <td>The destination is clear, measurable, and the path is trusted enough to commit to outcomes for a fixed period.</td>
+        <td>The problem is understood well enough to bound the investment, but the solution path is open within that boundary.</td>
+        <td>Priorities are obvious and the main risk is distraction, not uncertainty. The path is known, you just need focus.</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <div class="comp-footer">
+    <strong>Why separate positioning from strategy?</strong> When the two are mixed, changing your approach feels like admitting failure. People stick with broken strategies because changing them means changing their "goals." Separating them gives explicit permission to adapt the route while keeping the destination stable. This is the structural insight that GPS adds to the conversation.
+    <br><br>
+    <strong>These frameworks aren't mutually exclusive.</strong> GPS absorbs OKR terminology: Goal = Objective, Positioning = Key Results, Strategy = Initiatives. If you already use OKRs, GPS adds the missing strategy layer and the infinite time scale without replacing what works.
+  </div>
+
+</div>
+</section>
+
+</body>
+</html>
