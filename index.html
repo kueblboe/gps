@@ -49,10 +49,6 @@
     /* Comparison: GPS alias */
     --gps: #2D5A3D;
     --gps-bg: #E8F0EB;
-
-    /* EOS accent */
-    --eos: #7A5B8A;
-    --eos-bg: #F0EAF3;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -686,7 +682,6 @@
   .fw-tag.gps { background: var(--gps-bg); color: var(--gps); }
   .fw-tag.okr { background: var(--okr-bg); color: var(--okr); }
   .fw-tag.shapeup { background: var(--shapeup-bg); color: var(--shapeup); }
-  .fw-tag.eos { background: var(--eos-bg); color: var(--eos); }
 
   .fw-origin { font-size: 11px; font-weight: 400; color: var(--muted); letter-spacing: 0; text-transform: none; }
 
@@ -795,45 +790,6 @@
     margin-bottom: 16px;
   }
   
-  .hero-cta {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    animation: fadeUp 1s ease-out;
-  }
-
-  .cta-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    transition: color 0.2s ease;
-  }
-
-  .cta-link:hover {
-    color: var(--fg);
-  }
-
-  .cta-arrow {
-    transition: transform 0.2s ease;
-    animation: bounce 2s infinite;
-  }
-
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(4px); }
-    60% { transform: translateY(2px); }
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
   /* ═══════ BRIDGE ═══════ */
   .bridge {
     max-width: 620px;
@@ -936,16 +892,12 @@
   <div class="hero-inner">
     <div class="hero-eyebrow">Goals for an unpredictable world</div>
 	  <h1>Stop writing rigid plans. <span>Build a GPS.</span></h1>
-	  <p class="hero-desc">The GPS Framework separates your destination from your route. By decoupling <strong>Goal</strong>, <strong>Positioning</strong>, and <strong>Strategy</strong>, you give your teams the tools to navigate uncertainty and the explicit <strong>permission to pivot</strong>.</p>
-	  <div class="hero-cta">
-		  <a href="#overview" class="cta-link">
-		    See how it scales 
-		    <svg class="cta-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-		      <path d="M1 4.5L6 9.5L11 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-		    </svg>
-		  </a>
-		</div>
+	  <p class="hero-desc">Giving your teams the context to navigate uncertainty and the permission to pivot on the route without losing the destination.</p>
   </div>
+</div>
+
+<div class="bridge">
+  <p class="bridge-text">Just as the global positioning system (short: GPS) is the technology that powers navigation software, the GPS Framework (in this context standing for Goal, Positioning, and Strategy) will enable you to navigate your company to success.</p>
 </div>
 
 <hr class="section-break">
@@ -957,11 +909,11 @@
 <div class="container-wide">
 
   <h1>Aligning direction with the GPS Framework</h1>
-  <p class="subtitle">From vision to today's task. Same structure, different time scales.</p>
+  <p class="subtitle">From vision to today's task. Same structure, different time horizons.</p>
 
   <div class="anchor">
     <div style="margin-bottom: 10px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 14px;">
-      GPS asks three questions at three time scales:
+      GPS asks three questions at three time horizons:
       <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-infinite); display: inline-block;"></span> Infinite</span>
       <span style="color: var(--muted);">→</span>
       <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-cycle); display: inline-block;"></span> Cycle</span>
@@ -973,10 +925,14 @@
     <strong><span style="color: var(--accent); font-size: 16px;">S</span>trategy</strong> resolves trade-offs when multiple routes exist: <i>What are our route preferences?</i>
   </div>
 
+  <div class="callout" style="margin-top: 0; margin-bottom: 32px;">
+    <strong>Example:</strong> You want to drive to the Mediterranean for a beach holiday. That's your <strong>Goal</strong>. Your map shows you're currently in Munich, 600 km north, estimated arrival 8 hours — that's your <strong>Positioning</strong>. You prefer motorways over mountain passes — that's your <strong>Strategy</strong>. When a motorway is closed, you change the route. You don't change the destination. You don't pretend you're closer than you are. The GPS Framework works the same way. For companies and the teams within them.
+  </div>
+
   <table class="gps-table">
     <thead>
       <tr>
-        <th>Time Scale<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">How much time do we invest?</span></th>
+        <th>Time Horizon<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">How much time do we invest?</span></th>
         <th>Goal<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">Where are we going?</span></th>
         <th>Positioning<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">Are we there yet?</span></th>
         <th>Strategy<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">What are our route preferences?</span></th>
@@ -1161,7 +1117,7 @@
 
     <div class="bottom-box">
       <div class="bottom-box-title">Principles</div>
-      <div class="fn-item"><div class="fn-marker">01</div><div><strong>Each time scale nests into the one above.</strong> An immediate GPS serves a cycle strategy. A cycle GPS addresses a bottleneck in the infinite strategy. Alignment flows across time scales. Autonomy lives inside them.</div></div>
+      <div class="fn-item"><div class="fn-marker">01</div><div><strong>Each time horizon nests into the one above.</strong> An immediate GPS serves a cycle strategy. A cycle GPS addresses a bottleneck in the infinite strategy. Alignment flows across time horizons. Autonomy lives inside them.</div></div>
       <div class="fn-item"><div class="fn-marker">02</div><div><strong>Each GPS is owned by the scope that holds it.</strong> Ownership means you write it, adapt it, and are accountable for its outcomes.</div></div>
       <div class="fn-item"><div class="fn-marker">03</div><div><strong>GPS is an alignment tool, not a compliance tool.</strong> The executor writes their own GPS to think clearly before acting. The system makes it visible. Alignment emerges as a side effect, not from reporting upward.</div></div>
       <div class="fn-item"><div class="fn-marker">04</div><div><strong>Rigidity should match maturity.</strong> Match the stability of your infinite GPS to the stability of your business model. Early on, the vision is a hypothesis. Once you've found what works, the infinite GPS hardens and cycles lengthen.</div></div>
@@ -1174,7 +1130,7 @@
 <hr class="section-break">
 
 <div class="bridge">
-  <p class="bridge-text">GPS works at every scale. The same three questions apply whether you're a founding team running weekly experiments or a 500-person org with quarterly cycles. The time scale changes. The scope changes. The fundamental questions stay the same.</p>
+  <p class="bridge-text">GPS works at every scale. The same three questions apply whether you're a founding team running weekly experiments or a 500-person org with quarterly cycles. The time horizon changes. The scope changes. The fundamental questions stay the same.</p>
 </div>
 
 <hr class="section-break">
@@ -1581,10 +1537,6 @@
           <div class="fw-header"><span class="fw-tag shapeup">Shape Up</span></div>
           <div class="fw-origin">Basecamp</div>
         </th>
-        <th>
-          <div class="fw-header"><span class="fw-tag eos">EOS Rocks</span></div>
-          <div class="fw-origin">Gino Wickman</div>
-        </th>
       </tr>
     </thead>
     <tbody>
@@ -1594,21 +1546,19 @@
           <div class="row-label">Core components</div>
           <div class="row-sub">What you write down</div>
         </td>
-        <td>Goal + Positioning + Strategy at each time scale</td>
+        <td>Goal + Positioning + Strategy at each time horizon</td>
         <td>Objective + Key Results (+ Initiatives, added later by practitioners)</td>
         <td>Pitch (problem + appetite + solution boundaries)</td>
-        <td>10-year target → 3-year picture → 1-year plan → 90-day Rocks</td>
       </tr>
 
       <tr>
         <td>
-          <div class="row-label">Time scales</div>
+          <div class="row-label">Time horizons</div>
           <div class="row-sub">How far out you look</div>
         </td>
         <td>Three: infinite, cycle (1 week–1 year), immediate (hours–days)</td>
         <td>One: quarterly (sometimes annual)</td>
         <td>One: fixed 6-week cycles + 2-week cooldown</td>
-        <td>Four: 10-year, 3-year, 1-year, 90-day (executed via Weekly To-Dos)</td>
       </tr>
 
       <tr>
@@ -1619,7 +1569,6 @@
         <td>Each scope proposes cycle goals as investment pitches. The scope above acts as investment board.</td>
         <td>Varies. Cascaded top-down, bottom-up, or bidirectional depending on implementation.</td>
         <td>Leadership selects pitches at the betting table. Anyone can pitch, but leadership decides.</td>
-        <td>Cascaded top-down. Leadership sets company Rocks, departments derive theirs.</td>
       </tr>
 
       <tr>
@@ -1630,7 +1579,6 @@
         <td>Metrics on a spectrum (current → target). One metric at infinite level, multiple at cycle level. Observable states at immediate level.</td>
         <td>Key Results: measurable outcomes, typically 3–5 per objective. Scored 0–1.0.</td>
         <td>Hill charts: uphill (figuring out) → downhill (executing). No metrics.</td>
-        <td>Binary: on track / off track. Weekly L10 pulse check.</td>
       </tr>
 
       <tr>
@@ -1641,7 +1589,6 @@
         <td>Explicit, separate artifact. Decision guide for forks, not a task list. Described as a visual map.</td>
         <td class="gap">Not native to the original model. 'Initiatives' are often added, but usually degrade into rigid task lists rather than true strategic guidelines.</td>
         <td>Implicit in the shaped pitch. Boundaries ("what's in, what's out") guide the team.</td>
-        <td class="gap">Not explicit. The Rock itself acts as both goal and implied strategy.</td>
       </tr>
 
       <tr>
@@ -1652,7 +1599,6 @@
         <td>Explicitly separated. Positioning stays stable as reference point. Strategy adapts freely.</td>
         <td class="gap">Blurred. Key Results mix "where we are" with "how we get there." No separation.</td>
         <td>Partially. Appetite sets the constraint. Hill chart tracks confidence, not metrics. Approach is free.</td>
-        <td class="gap">Not separated. Rocks conflate destination and path.</td>
       </tr>
 
       <tr>
@@ -1663,7 +1609,6 @@
         <td>Explicit sequence: change strategy first → adjust positioning → rethink goal. Cheapest change first.</td>
         <td>No prescribed adaptation sequence. Check-ins happen but there's no explicit protocol for what to change first.</td>
         <td>Cut scope, don't extend time. If it doesn't ship, it returns to the pitch pile for re-betting.</td>
-        <td>Surface in weekly L10. IDS process (Identify, Discuss, Solve). Rock stays fixed.</td>
       </tr>
 
       <tr>
@@ -1674,7 +1619,6 @@
         <td>Variable: matched to maturity stage. 1 week (ideate) → 1 year (mature).</td>
         <td>Fixed: quarterly. Some orgs add annual layer.</td>
         <td>Fixed: 6 weeks. No exceptions.</td>
-        <td>Fixed: 90 days.</td>
       </tr>
 
       <tr>
@@ -1685,7 +1629,6 @@
         <td>High. Executor writes their own GPS. Scope above sets the constraint, everything inside is yours.</td>
         <td>Depends on implementation. Ranges from heavy top-down cascade to full team ownership.</td>
         <td>High within cycle. Team has full autonomy over execution. Zero between cycles: betting table decides what's next.</td>
-        <td>Low. Strong accountability culture. Prescriptive meeting structure and cascading priorities.</td>
       </tr>
 
       <tr>
@@ -1696,7 +1639,6 @@
         <td>The destination is stable but the path will change. You need to navigate, not just track.</td>
         <td>The destination is clear, measurable, and the path is trusted enough to commit to outcomes for a fixed period.</td>
         <td>The problem is understood well enough to bound the investment, but the solution path is open within that boundary.</td>
-        <td>Priorities are obvious and the main risk is distraction, not uncertainty. The path is known, you just need focus.</td>
       </tr>
 
     </tbody>
@@ -1705,7 +1647,7 @@
   <div class="comp-footer">
     <strong>Why separate positioning from strategy?</strong> When the two are mixed, changing your approach feels like admitting failure. People stick with broken strategies because changing them means changing their "goals." Separating them gives explicit permission to adapt the route while keeping the destination stable. This is the structural insight that GPS adds to the conversation.
     <br><br>
-    <strong>These frameworks aren't mutually exclusive.</strong> GPS absorbs OKR terminology: Goal = Objective, Positioning = Key Results, Strategy = Initiatives. If you already use OKRs, GPS adds the missing strategy layer and the infinite time scale without replacing what works.
+    <strong>These frameworks aren't mutually exclusive.</strong> GPS absorbs OKR terminology: Goal = Objective, Positioning = Key Results, Strategy = Initiatives. If you already use OKRs, GPS adds the missing strategy layer and the infinite time horizon without replacing what works.
   </div>
 
 </div>
