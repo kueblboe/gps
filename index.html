@@ -390,6 +390,59 @@
   .scope-dot.light { opacity: 0.35; }
   .scope-note { margin-top: 10px; font-size: 12px; color: var(--muted); line-height: 1.5; }
 
+  /* ═══════ OVERVIEW: Interactive size selector ═══════ */
+  .size-radio { display: none; }
+  .scope-view { display: none; }
+
+  #size-large:checked ~ .scope-view-large { display: block; }
+  #size-mid:checked ~ .scope-view-mid { display: block; }
+  #size-small:checked ~ .scope-view-small { display: block; }
+
+  .size-tab {
+    flex: 1;
+    padding: 8px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    text-align: left;
+  }
+
+  .size-tab:first-of-type { border-radius: 10px 0 0 10px; }
+  .size-tab:last-of-type { border-radius: 0 10px 10px 0; }
+  .size-tab:not(:first-of-type) { border-left: none; }
+  .size-tab:hover { background: var(--cell-bg); }
+
+  .bottom-box:has(#size-small:checked) label[for="size-small"],
+  .bottom-box:has(#size-mid:checked) label[for="size-mid"],
+  .bottom-box:has(#size-large:checked) label[for="size-large"] {
+    background: var(--cell-bg);
+    border: 1px solid var(--accent);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  .size-tab-name { font-weight: 600; }
+  .size-tab-desc { color: var(--muted); margin-top: 2px; }
+
+  .goal-mode {
+    margin-top: 12px;
+    padding: 8px 12px;
+    background: var(--bg);
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .goal-mode-label {
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-size: 10px;
+    margin-bottom: 2px;
+  }
+
   .fn-item {
     display: flex;
     gap: 12px;
@@ -906,25 +959,75 @@
 <div class="container-wide">
 
   <h1>Aligning direction with the GPS Framework</h1>
-  <p class="subtitle">From vision to today's task. Same structure, different time horizons.</p>
+  <p class="subtitle">Three questions. Three time horizons. One structure.</p>
 
   <div class="anchor">
-    <div style="margin-bottom: 10px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 14px;">
-      GPS asks three questions at three time horizons:
-      <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-infinite); display: inline-block;"></span> Infinite</span>
-      <span style="color: var(--muted);">→</span>
-      <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-cycle); display: inline-block;"></span> Cycle</span>
-      <span style="color: var(--muted);">→</span>
-      <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-immediate); display: inline-block;"></span> Immediate</span>
-    </div>
+    <div style="margin-bottom: 6px; font-size: 14px;">GPS asks three questions:</div>
     <strong><span style="color: var(--accent); font-size: 16px;">G</span>oal</strong> describes the desired future: <i>Where are we going?</i><br>
     <strong><span style="color: var(--accent); font-size: 16px;">P</span>ositioning</strong> measures the observable gap between here and there: <i>Are we there yet?</i><br>
     <strong><span style="color: var(--accent); font-size: 16px;">S</span>trategy</strong> resolves trade-offs when multiple routes exist: <i>What are our route preferences?</i>
+    <div style="margin-top: 10px; font-size: 13px; color: var(--muted);">GPS is deliberately minimal: just enough structure to enable autonomy, not enough to constrain it.</div>
   </div>
 
   <div class="callout" style="margin-top: 0; margin-bottom: 32px;">
     <strong>Example:</strong> You want to drive to the Mediterranean for a beach holiday. That's your <strong>Goal</strong>. Your map shows you're currently in Munich, 600 km north, estimated arrival 8 hours. That's your <strong>Positioning</strong>. You prefer highways over mountain passes. That's your <strong>Strategy</strong>. When a highway is closed, you change the route. You don't change the destination. You don't pretend you're closer than you are. The GPS Framework works the same way. For companies and the teams within them.
   </div>
+
+  <!-- CYCLE GPS TABLE (primary, most familiar) -->
+  <h3 style="margin-top: 0;">The Cycle GPS</h3>
+  <p>Most teams already think in cycles: sprints, quarters, trimesters. The cycle GPS gives structure to what you're already doing.</p>
+
+  <table class="gps-table">
+    <thead>
+      <tr>
+        <th>Time Horizon<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">How much time do we invest?</span></th>
+        <th>Goal<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">Where are we going?</span></th>
+        <th>Positioning<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">Are we there yet?</span></th>
+        <th>Strategy<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">What are our route preferences?</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="level-cell">
+          <span class="level-tag cycle">Cycle GPS</span>
+          <span class="time-scale"><span class="stability-badge cycle-len">1 week – 1 year</span></span>
+          <div class="level-note">Play to win this round. Higher uncertainty → shorter cycle.</div>
+        </td>
+        <td>
+          <div class="cell-desc">What you're achieving this cycle. Concrete end state. Derived from the current bottleneck in your long-term strategy. <span class="cell-ref">(Think: an OKR objective.)</span></div>
+          <span class="cell-format">format: plain text</span>
+          <div class="cell-example cycle">"Ship public beta with business licensing by end of cycle."</div>
+        </td>
+        <td>
+          <div class="cell-desc">Current and target values on metrics that show the gap. <span class="cell-ref">(Think: OKR key results.)</span></div>
+          <span class="cell-format">format: metrics from → to</span>
+          <div class="cell-example cycle">Live processes: 6 → 18. Organizations: 2 → 5. Billing MVP: no → yes.</div>
+        </td>
+        <td>
+          <div class="cell-desc">What to prioritize when you hit a fork. Not a to-do list. <span class="cell-ref">(Think: strategic bets.)</span></div>
+          <span class="cell-format">format: visual map</span>
+          <div class="cell-example cycle">Map axes: customer segment (small teams → mid-size → enterprise) × adoption depth (exploring → committed → dependent). Focus on the bottom-left: small teams still exploring. Move them upward to committed. Don't move right into enterprise until billing is proven.</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- FRACTAL EXTENSION -->
+  <h3 style="margin-top: 40px;">The same pattern, two more time horizons</h3>
+  <p>The cycle GPS doesn't exist in isolation. The same three questions apply at two more time horizons, forming a fractal pattern:</p>
+  <p style="margin-bottom: 4px;">
+    <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-infinite); display: inline-block;"></span> <strong>Infinite GPS</strong></span>
+    gives long-term direction that persists across cycles.
+  </p>
+  <p style="margin-bottom: 4px;">
+    <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-cycle); display: inline-block;"></span> <strong>Cycle GPS</strong></span>
+    produces concrete outcomes within a bounded time frame.
+  </p>
+  <p style="margin-bottom: 20px;">
+    <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-immediate); display: inline-block;"></span> <strong>Immediate GPS</strong></span>
+    guides autonomous execution of individual tasks.
+  </p>
+  <p>Each level nests into the one above. An immediate GPS serves a cycle strategy. A cycle GPS addresses a bottleneck in the infinite strategy. The metaphor stays the same. The scope changes.</p>
 
   <table class="gps-table">
     <thead>
@@ -961,12 +1064,12 @@
         </td>
       </tr>
 
-      <!-- CYCLE GPS -->
+      <!-- CYCLE GPS (repeated in full context) -->
       <tr>
         <td class="level-cell">
           <span class="level-tag cycle">Cycle GPS</span>
           <span class="time-scale"><span class="stability-badge cycle-len">1 week – 1 year</span></span>
-          <div class="level-note">Play to win this round. Proposed based on expected return, not assigned top-down. Higher uncertainty → shorter cycle.</div>
+          <div class="level-note">Play to win this round. Higher uncertainty → shorter cycle.</div>
         </td>
         <td>
           <div class="cell-desc">What you're achieving this cycle. Concrete end state. Derived from the current bottleneck in your Infinite Strategy. <span class="cell-ref">(Think: an OKR objective.)</span></div>
@@ -1012,6 +1115,10 @@
     </tbody>
   </table>
 
+  <div class="callout" style="margin-top: 20px;">
+    <strong>The fractal advantage.</strong> People who practice GPS daily with their individual tasks will recognize the pattern when they encounter it in two-week cycles or vision statements. The framework teaches itself through use. Someone who has never thought about company strategy will still get it, because the structure is the same one they use every day.
+  </div>
+
   <!-- Adaptation -->
   <div class="adapt-section">
     <div class="adapt-title">When progress stalls, adapt in this order:</div>
@@ -1053,45 +1160,102 @@
       <div class="bottom-box-title">How GPS scales</div>
 
       <div style="font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px;">Scope scales with company size</div>
+
+      <input type="radio" id="size-small" name="company-size" class="size-radio">
+      <input type="radio" id="size-mid" name="company-size" class="size-radio">
+      <input type="radio" id="size-large" name="company-size" class="size-radio" checked>
+
       <div style="display: flex; gap: 0; margin-bottom: 16px;">
-        <div style="flex: 1; padding: 8px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px 0 0 10px; font-size: 12px;">
-          <div style="font-weight: 600;">1–15 people</div>
-          <div style="color: var(--muted); margin-top: 2px;">team = company</div>
+        <label for="size-small" class="size-tab">
+          <div class="size-tab-name">1–15 people</div>
+          <div class="size-tab-desc">team = company</div>
+        </label>
+        <label for="size-mid" class="size-tab">
+          <div class="size-tab-name">15–50 people</div>
+          <div class="size-tab-desc">teams + company</div>
+        </label>
+        <label for="size-large" class="size-tab">
+          <div class="size-tab-name">50+ people</div>
+          <div class="size-tab-desc">teams + units + company</div>
+        </label>
+      </div>
+
+      <!-- 1-15 people: single row -->
+      <div class="scope-view scope-view-small">
+        <div class="scope-grid" style="grid-template-columns: 120px repeat(3, 1fr);">
+          <div class="scope-grid-header"></div>
+          <div class="scope-grid-header" style="color: var(--accent-infinite);">Infinite</div>
+          <div class="scope-grid-header" style="color: var(--accent-cycle);">Cycle</div>
+          <div class="scope-grid-header" style="color: var(--accent-immediate);">Immediate</div>
+
+          <div class="scope-grid-label">Team = Company</div>
+          <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-infinite);">✓</span></div>
+          <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-cycle);">✓</span></div>
+          <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-immediate);">✓</span></div>
         </div>
-        <div style="flex: 1; padding: 8px 12px; background: var(--bg); border: 1px solid var(--border); border-left: none; font-size: 12px;">
-          <div style="font-weight: 600;">15–50 people</div>
-          <div style="color: var(--muted); margin-top: 2px;">teams + company</div>
-        </div>
-        <div style="flex: 1; padding: 8px 12px; background: var(--bg); border: 1px solid var(--border); border-left: none; border-radius: 0 10px 10px 0; font-size: 12px;">
-          <div style="font-weight: 600;">50+ people</div>
-          <div style="color: var(--muted); margin-top: 2px;">teams + units + company</div>
+        <div class="scope-note">One scope does everything. No need to distinguish between team and company goals.</div>
+        <div class="goal-mode">
+          <div class="goal-mode-label">Who sets direction</div>
+          Founder-led. The founding team sets cycle goals directly. GPS gives them structure, not delegation.
         </div>
       </div>
 
-      <div class="scope-grid">
-        <div class="scope-grid-header"></div>
-        <div class="scope-grid-header" style="color: var(--accent-infinite);">Infinite</div>
-        <div class="scope-grid-header" style="color: var(--accent-cycle);">Cycle</div>
-        <div class="scope-grid-header" style="color: var(--accent-immediate);">Immediate</div>
+      <!-- 15-50 people: two rows -->
+      <div class="scope-view scope-view-mid">
+        <div class="scope-grid" style="grid-template-columns: 120px repeat(3, 1fr);">
+          <div class="scope-grid-header"></div>
+          <div class="scope-grid-header" style="color: var(--accent-infinite);">Infinite</div>
+          <div class="scope-grid-header" style="color: var(--accent-cycle);">Cycle</div>
+          <div class="scope-grid-header" style="color: var(--accent-immediate);">Immediate</div>
 
-        <div class="scope-grid-label">Company</div>
-        <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-infinite);">✓</span></div>
-        <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-cycle);">✓</span></div>
-        <div class="scope-grid-cell"><span class="scope-dot light" style="background: var(--accent-immediate);">○</span></div>
+          <div class="scope-grid-label">Company</div>
+          <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-infinite);">✓</span></div>
+          <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-cycle);">✓</span></div>
+          <div class="scope-grid-cell"><span class="scope-dot light" style="background: var(--accent-immediate);">○</span></div>
 
-        <div class="scope-grid-label">Unit</div>
-        <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-infinite);">✓</span></div>
-        <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-cycle);">✓</span></div>
-        <div class="scope-grid-cell"><span class="scope-dot light" style="background: var(--accent-immediate);">○</span></div>
-
-        <div class="scope-grid-label">Team</div>
-        <div class="scope-grid-cell"><span class="scope-dot light" style="background: var(--accent-infinite);">○</span></div>
-        <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-cycle);">✓</span></div>
-        <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-immediate);">✓</span></div>
+          <div class="scope-grid-label">Team</div>
+          <div class="scope-grid-cell"><span class="scope-dot light" style="background: var(--accent-infinite);">○</span></div>
+          <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-cycle);">✓</span></div>
+          <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-immediate);">✓</span></div>
+        </div>
+        <div class="scope-note">✓ = typical. ○ = possible. Teams start owning their own cycle and immediate GPS.</div>
+        <div class="goal-mode">
+          <div class="goal-mode-label">Who sets direction</div>
+          Founder-framed. Leadership sets the company GPS. Teams propose cycle goals with increasing ownership as they mature.
+        </div>
       </div>
-      <div class="scope-note" style="margin-bottom: 16px;">✓ = typical. ○ = possible. Every scope can have each, but this shows where they naturally concentrate.</div>
 
-      <div style="font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px;">Cycle length scales with maturity</div>
+      <!-- 50+ people: three rows -->
+      <div class="scope-view scope-view-large">
+        <div class="scope-grid" style="grid-template-columns: 120px repeat(3, 1fr);">
+          <div class="scope-grid-header"></div>
+          <div class="scope-grid-header" style="color: var(--accent-infinite);">Infinite</div>
+          <div class="scope-grid-header" style="color: var(--accent-cycle);">Cycle</div>
+          <div class="scope-grid-header" style="color: var(--accent-immediate);">Immediate</div>
+
+          <div class="scope-grid-label">Company</div>
+          <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-infinite);">✓</span></div>
+          <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-cycle);">✓</span></div>
+          <div class="scope-grid-cell"><span class="scope-dot light" style="background: var(--accent-immediate);">○</span></div>
+
+          <div class="scope-grid-label">Unit</div>
+          <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-infinite);">✓</span></div>
+          <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-cycle);">✓</span></div>
+          <div class="scope-grid-cell"><span class="scope-dot light" style="background: var(--accent-immediate);">○</span></div>
+
+          <div class="scope-grid-label">Team</div>
+          <div class="scope-grid-cell"><span class="scope-dot light" style="background: var(--accent-infinite);">○</span></div>
+          <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-cycle);">✓</span></div>
+          <div class="scope-grid-cell"><span class="scope-dot full" style="background: var(--accent-immediate);">✓</span></div>
+        </div>
+        <div class="scope-note">✓ = typical. ○ = possible. Every scope can have each, but this shows where they naturally concentrate.</div>
+        <div class="goal-mode">
+          <div class="goal-mode-label">Who sets direction</div>
+          Team-pitched. Each scope proposes cycle goals as investment pitches. The scope above acts as investment board.
+        </div>
+      </div>
+
+      <div style="font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; margin-top: 20px;">Cycle length scales with maturity</div>
       <div style="display: flex; gap: 0;">
         <div style="flex: 1; padding: 8px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px 0 0 10px; font-size: 12px;">
           <div style="font-weight: 600;">Ideate</div>
@@ -1114,10 +1278,12 @@
 
     <div class="bottom-box">
       <div class="bottom-box-title">Principles</div>
-      <div class="fn-item"><div class="fn-marker">01</div><div><strong>Each time horizon nests into the one above.</strong> An immediate GPS serves a cycle strategy. A cycle GPS addresses a bottleneck in the infinite strategy. Alignment flows across time horizons. Autonomy lives inside them.</div></div>
-      <div class="fn-item"><div class="fn-marker">02</div><div><strong>Each GPS is owned by the scope that holds it.</strong> Ownership means you write it, adapt it, and are accountable for its outcomes.</div></div>
-      <div class="fn-item"><div class="fn-marker">03</div><div><strong>GPS is an alignment tool, not a compliance tool.</strong> The executor writes their own GPS to think clearly before acting. The system makes it visible. Alignment emerges as a side effect, not from reporting upward.</div></div>
-      <div class="fn-item"><div class="fn-marker">04</div><div><strong>Rigidity should match maturity.</strong> Match the stability of your infinite GPS to the stability of your business model. Early on, the vision is a hypothesis. Once you've found what works, the infinite GPS hardens and cycles lengthen.</div></div>
+      <div class="fn-item"><div class="fn-marker">01</div><div><strong>Each time horizon nests into the one above.</strong> An immediate GPS serves a cycle strategy. A cycle GPS addresses a bottleneck in the infinite strategy. Alignment flows down through time horizons. Autonomy lives inside them.</div></div>
+      <div class="fn-item"><div class="fn-marker">02</div><div><strong>Information flows upward.</strong> Task reflections feed into cycle reviews. Positioning data accumulates across check-ins into a cycle-level picture. The same data that guides daily decisions becomes the evidence base for strategic ones.</div></div>
+      <div class="fn-item"><div class="fn-marker">03</div><div><strong>Each GPS is owned by the scope that holds it.</strong> Ownership means you write it, adapt it, and are accountable for its outcomes.</div></div>
+      <div class="fn-item"><div class="fn-marker">04</div><div><strong>GPS is an alignment tool, not a compliance tool.</strong> The executor writes their own GPS to think clearly before acting. The system makes it visible. Alignment emerges as a side effect, not from reporting upward.</div></div>
+      <div class="fn-item"><div class="fn-marker">05</div><div><strong>Rigidity should match maturity.</strong> Match the stability of your infinite GPS to the stability of your business model. Early on, the vision is a hypothesis. Once you've found what works, the infinite GPS hardens and cycles lengthen.</div></div>
+      <div class="fn-item"><div class="fn-marker">06</div><div><strong>Teams and groups use GPS differently.</strong> When people collaborate on shared deliverables, GPS is a coordination tool: shared context enables autonomous decisions. When people work in parallel on distinct tasks, GPS is a self-accountability tool: intention, execution, reflection.</div></div>
     </div>
   </div>
 
@@ -1151,7 +1317,7 @@
   <div class="cycle-loop">
     <div class="cycle-phase active">
       <div class="phase-label">Start of cycle</div>
-      Strategize
+      Strategizing
     </div>
     <div class="cycle-phase">
       <div class="phase-label">During cycle</div>
@@ -1360,6 +1526,10 @@
   <!-- INVESTMENT PITCHES -->
   <h2>Cycle goals as investment pitches</h2>
 
+  <div class="callout-gate">
+    <strong>When does this apply?</strong> The pitch model requires teams with enough domain ownership and product thinking to propose their own goals. Until then, founders set cycle goals directly and GPS gives them structure, not delegation. The pitch model is where you're headed, not where you start.
+  </div>
+
   <p>Goal alignment is bidirectional. The GPS from the scope above cascades down as a frame: here's where we're going, here's where we are, here's our approach. Cycle goals then bubble up as investment pitches: here's what we propose to deliver within that frame, and here's what we need to do it.</p>
 
   <div class="pitch-box">
@@ -1478,28 +1648,28 @@
       <div class="step-num">2</div>
       <div class="step-content">
         <div class="step-label">Start at the top</div>
-        <div class="step-desc">Define the highest-scope GPS first. Everything else derives from there. If the top isn't clear, nothing below will align.</div>
+        <div class="step-desc">Define the highest-scope GPS first. At this stage, leadership writes it. Everything else derives from there. If the top isn't clear, nothing below will align.</div>
       </div>
     </div>
     <div class="step-card">
       <div class="step-num">3</div>
       <div class="step-content">
         <div class="step-label">Set up the rhythm</div>
-        <div class="step-desc">Pick a tool to track goals (ideally the same one used for daily work). Set up recurring meetings for strategizing, check-ins, and reviews at each scope.</div>
+        <div class="step-desc">Pick a cycle length. Set up recurring meetings for strategizing, check-ins, and reviews. Run a few cycles with leadership setting the goals. Let the rhythm become familiar before distributing ownership.</div>
       </div>
     </div>
     <div class="step-card">
       <div class="step-num">4</div>
       <div class="step-content">
-        <div class="step-label">Train leads in pitching</div>
-        <div class="step-desc">Create a simple pitch template: cycle GPS (Goal, Positioning, Strategy) and Investment ask. Clarify who acts as investment board at each scope.</div>
+        <div class="step-label">Facilitate the first strategizing sessions</div>
+        <div class="step-desc">Support teams by facilitating their first few sessions using the five strategizing steps. Help them experience the structure. Once the rhythm carries itself, step back.</div>
       </div>
     </div>
     <div class="step-card">
       <div class="step-num">5</div>
       <div class="step-content">
-        <div class="step-label">Facilitate, then step back</div>
-        <div class="step-desc">Support teams by facilitating their first few strategizing sessions. Help them get the rhythm. Then let the process carry itself.</div>
+        <div class="step-label">Introduce pitching</div>
+        <div class="step-desc">Once teams have practiced GPS and own their domain enough to propose goals: create a pitch template (cycle GPS plus investment ask) and clarify who acts as investment board at each scope. This is a maturity milestone, not a starting point.</div>
       </div>
     </div>
   </div>
@@ -1563,7 +1733,7 @@
           <div class="row-label">Who sets direction</div>
           <div class="row-sub">Where goals come from</div>
         </td>
-        <td>Each scope proposes cycle goals as investment pitches. The scope above acts as investment board.</td>
+        <td>Scales with maturity. Founder-led early on, progressing to team-pitched as domain ownership grows. At maturity: each scope proposes cycle goals as investment pitches, the scope above acts as investment board.</td>
         <td>Varies. Cascaded top-down, bottom-up, or bidirectional depending on implementation.</td>
         <td>Leadership selects pitches at the betting table. Anyone can pitch, but leadership decides.</td>
       </tr>
@@ -1650,6 +1820,24 @@
 </div>
 </section>
 
+<!-- URL parameter sync for company size selector -->
+<script>
+(function() {
+  var map = { small: 'size-small', mid: 'size-mid', large: 'size-large' };
+  var p = new URLSearchParams(location.search).get('size');
+  if (p && map[p]) document.getElementById(map[p]).checked = true;
+  document.querySelectorAll('.size-radio').forEach(function(r) {
+    r.addEventListener('change', function() {
+      var key = this.id.replace('size-', '');
+      var url = new URL(location);
+      if (key === 'large') url.searchParams.delete('size');
+      else url.searchParams.set('size', key);
+      history.replaceState(null, '', url);
+    });
+  });
+})();
+</script>
+
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- FOOTER                                             -->
 <!-- ═══════════════════════════════════════════════════ -->
@@ -1661,4 +1849,9 @@
       <a href="https://www.linkedin.com/in/manuelkueblboeck/">LinkedIn</a>
       <a href="/cdn-cgi/l/email-protection#94f9f5fae1f1f8d4faf1e3e3fbe6fff6edf0f1e7fdf3fabaf7fbf9">Contact</a>
     </div>
-    <p class="footer-copy">© 2026 Manuel Küblböck · Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA
+    <p class="footer-copy">© 2026 Manuel Küblböck · Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
