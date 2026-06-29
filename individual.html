@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Individual GPS — New Work by Design</title>
+<meta name="description" content="GPS for personal growth. The same framework that aligns teams and companies, applied to who you're becoming. Goal, Positioning, Strategy for individual development.">
+<meta property="og:title" content="Individual GPS — Goal, Positioning, Strategy for Growth">
+<meta property="og:description" content="The same framework that aligns teams and companies, applied to who you're becoming. Navigate your growth with Goal, Positioning, Strategy.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gps.newworkbydesign.com/individual">
+<meta property="og:image" content="https://gps.newworkbydesign.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Individual GPS — Goal, Positioning, Strategy for Growth">
+<meta name="twitter:description" content="The same framework that aligns teams and companies, applied to who you're becoming.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --fg: #1A1A18;
+    --muted: #8A8A82;
+    --border: #E0E0D8;
+    --cell-bg: #FFFFFF;
+    --step-color: #9A9A94;
+
+    /* Individual GPS accent — distinct from org GPS green */
+    --accent: #5B4A7A;
+    --accent-bg: #EEEAF3;
+
+    /* Infinite: deep purple — interiority, long-term vision */
+    --accent-infinite: #5B4A7A;
+    --tag-infinite: #EEEAF3;
+
+    /* Cycle: teal — grounded growth, natural development */
+    --accent-cycle: #3D7A7A;
+    --tag-cycle: #E4F0F0;
+
+    /* Immediate: warm copper — hands-on practice */
+    --accent-immediate: #8A5B3D;
+    --tag-immediate: #F3ECE4;
+
+    /* Org GPS reference color */
+    --org-accent: #2D5A3D;
+    --org-bg: #E8F0EB;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    padding: 0;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ═══════ NAVIGATION ═══════ */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 250, 248, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(224, 224, 216, 0.6);
+    padding: 0 32px;
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    height: 48px;
+  }
+
+  .nav-brand {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.3px;
+    white-space: nowrap;
+  }
+
+  .nav-links { display: flex; gap: 4px; }
+
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--fg);
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  /* ═══════ HERO ═══════ */
+  .hero {
+    padding: 96px 32px 72px;
+    text-align: center;
+  }
+
+  .hero-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+    line-height: 1.15;
+    font-weight: 700;
+  }
+
+  .hero h1 span { color: var(--accent); }
+
+  .hero-desc {
+    font-size: 17px;
+    color: #4A4A44;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ═══════ SECTION BREAKS ═══════ */
+  .section-break {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+
+  section {
+    padding: 40px 32px 56px;
+    scroll-margin-top: 48px;
+  }
+
+  .container-wide { max-width: 1200px; margin: 0 auto; }
+  .container-narrow { max-width: 900px; margin: 0 auto; }
+
+  /* ═══════ SHARED TYPOGRAPHY ═══════ */
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 56px;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 32px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 14px;
+    margin-bottom: 12px;
+    line-height: 1.65;
+    color: #3A3A34;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 48px 0 0 0;
+  }
+
+  /* ═══════ ANCHOR BOX ═══════ */
+  .anchor {
+    margin-bottom: 48px;
+    padding: 20px 24px;
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  /* ═══════ TABLE ═══════ */
+  .gps-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 2px;
+  }
+
+  .gps-table thead th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--muted);
+    font-weight: 500;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .gps-table thead th:first-child { width: 180px; }
+
+  .gps-table tbody td {
+    padding: 14px 16px;
+    vertical-align: top;
+    font-size: 14px;
+    background: var(--cell-bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .gps-table tbody tr:last-child td { border-bottom: none; }
+
+  .level-cell { position: relative; }
+
+  .level-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .level-tag.infinite { background: var(--tag-infinite); color: var(--accent-infinite); }
+  .level-tag.cycle { background: var(--tag-cycle); color: var(--accent-cycle); }
+  .level-tag.immediate { background: var(--tag-immediate); color: var(--accent-immediate); }
+
+  .time-scale { display: block; margin-top: 8px; }
+
+  .stability-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .stability-badge.rare { background: var(--tag-infinite); color: var(--accent-infinite); }
+  .stability-badge.cycle-len { background: var(--tag-cycle); color: var(--accent-cycle); }
+  .stability-badge.hours { background: var(--tag-immediate); color: var(--accent-immediate); }
+
+  .level-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  .cell-desc { color: #4A4A44; line-height: 1.55; }
+  .cell-ref { font-style: italic; color: var(--muted); }
+
+  .cell-format {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .cell-example {
+    margin-top: 8px;
+    padding: 10px 12px;
+    background: var(--bg);
+    border-radius: 6px;
+    font-size: 13px;
+    color: #5A5A54;
+    border-left: 3px solid var(--border);
+  }
+
+  .cell-example.infinite { border-left-color: var(--accent-infinite); }
+  .cell-example.cycle { border-left-color: var(--accent-cycle); }
+  .cell-example.immediate { border-left-color: var(--accent-immediate); }
+
+  /* ═══════ CALLOUTS ═══════ */
+  .callout {
+    margin: 20px 0;
+    padding: 16px 20px;
+    background: var(--accent-bg);
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #3A3A34;
+  }
+
+  .callout strong { color: var(--fg); }
+
+  .callout-gate {
+    margin: 20px 0;
+    padding: 16px 20px;
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 2px 8px 8px 2px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #3A3A34;
+  }
+
+  .callout-gate strong { color: var(--fg); }
+
+  /* ═══════ ADAPTATION SEQUENCE ═══════ */
+  .adapt-section { margin-top: 48px; margin-bottom: 48px; }
+  .adapt-title { font-size: 14px; font-weight: 700; margin-bottom: 14px; }
+
+  .adapt-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    position: relative;
+  }
+
+  .adapt-step {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  .adapt-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .adapt-text { min-width: 0; }
+  .adapt-label { font-size: 13px; font-weight: 600; line-height: 1.3; }
+  .adapt-desc { font-size: 11px; color: var(--muted); line-height: 1.4; margin-top: 1px; }
+
+  .adapt-connector {
+    width: 36px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .adapt-connector svg { display: block; }
+  .adapt-note { margin-top: 10px; font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ═══════ BOTTOM ROW ═══════ */
+  .bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  .bottom-box {
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  .bottom-box-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
+
+  .fn-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  .fn-item strong { color: var(--fg); }
+
+  .fn-marker {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #9A9A94;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ═══════ STEP CARDS ═══════ */
+  .step-track {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .step-card {
+    display: flex;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    align-items: flex-start;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    background: var(--step-color);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .step-content { min-width: 0; }
+  .step-label { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+
+  .step-gps-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    margin-right: 4px;
+  }
+
+  .step-gps-tag.g { background: var(--accent-bg); color: var(--accent); }
+  .step-gps-tag.p { background: var(--tag-cycle); color: var(--accent-cycle); }
+  .step-gps-tag.s { background: var(--tag-immediate); color: var(--accent-immediate); }
+
+  .step-question { font-size: 13px; font-style: italic; color: var(--muted); margin-bottom: 2px; }
+  .step-desc { font-size: 13px; color: #4A4A44; line-height: 1.5; }
+
+  /* ═══════ CYCLE LOOP ═══════ */
+  .cycle-loop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 32px 0;
+  }
+
+  .cycle-phase {
+    text-align: center;
+    padding: 16px 24px;
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .cycle-phase:first-child { border-radius: 10px 0 0 10px; }
+  .cycle-phase:last-child { border-radius: 0 10px 10px 0; }
+  .cycle-phase:not(:first-child) { border-left: none; }
+
+  .cycle-phase .phase-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .cycle-phase.active {
+    background: var(--accent-bg);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .cycle-return {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* ═══════ MEETING CARDS ═══════ */
+  .meeting-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .meeting-card {
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  .meeting-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .meeting-freq { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-bottom: 10px; }
+  .meeting-desc { font-size: 13px; color: #4A4A44; line-height: 1.5; }
+
+  /* ═══════ INTERFACE DIAGRAM ═══════ */
+  .interface-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 32px 0;
+  }
+
+  .interface-scope {
+    flex: 1;
+    padding: 20px;
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  .interface-scope-label {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .interface-scope-sub {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .interface-arrows {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 0 16px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .interface-arrow {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+  }
+
+  /* ═══════ BRIDGE ═══════ */
+  .bridge {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 48px 32px;
+    text-align: center;
+  }
+
+  .bridge-text {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--fg);
+  }
+
+  /* ═══════ FOOTER ═══════ */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 32px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .footer-inner { max-width: 600px; margin: 0 auto; }
+  .footer-context { margin-bottom: 12px; }
+  .footer-context a { color: var(--accent); text-decoration: none; }
+  .footer-context a:hover { text-decoration: underline; }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 12px;
+  }
+
+  .footer-links a { color: var(--muted); text-decoration: none; }
+  .footer-links a:hover { color: var(--fg); }
+  .footer-copy { font-size: 12px; }
+  .footer-copy a { color: var(--muted); text-decoration: none; }
+  .footer-copy a:hover { color: var(--fg); }
+
+  /* ═══════ ORG GPS LINK TAG ═══════ */
+  .org-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--org-bg);
+    color: var(--org-accent);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .org-link:hover { opacity: 0.8; }
+
+  /* ═══════ SKILL MATRIX ═══════ */
+  .skill-matrix {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 20px 0;
+    font-size: 12px;
+  }
+
+  .skill-matrix th {
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    color: var(--muted);
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+
+  .skill-matrix th:first-child {
+    width: 110px;
+  }
+
+  .skill-matrix td {
+    padding: 8px 12px;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--bg);
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .skill-matrix td:first-child {
+    text-align: left;
+    font-weight: 500;
+    color: var(--fg);
+    font-size: 12px;
+  }
+
+  .skill-matrix tr:last-child td {
+    border-bottom: none;
+  }
+
+  .skill-dot {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+  }
+
+  .skill-dot.filled {
+    background: var(--accent-cycle);
+  }
+
+  .skill-dot.target {
+    background: transparent;
+    border: 2px dashed var(--accent-cycle);
+    color: var(--accent-cycle);
+    width: 18px;
+    height: 18px;
+  }
+
+  .skill-dot.empty {
+    background: var(--bg);
+    border: 1px solid var(--border);
+  }
+
+  .skill-matrix-wrap {
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin: 20px 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  .skill-matrix-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .skill-matrix-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .skill-legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .skill-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* ═══════ RESPONSIVE ═══════ */
+  @media (max-width: 900px) {
+    section { padding: 24px 16px 40px; }
+    .nav { padding: 0 16px; }
+    .gps-table { font-size: 13px; }
+    .gps-table thead th, .gps-table tbody td { padding: 10px 10px; }
+    .adapt-track { flex-direction: column; }
+    .adapt-connector { width: auto; height: 20px; transform: rotate(90deg); }
+    .adapt-step { width: 100%; }
+    .bottom-row { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 700px) {
+    .hero { padding: 56px 20px 48px; }
+    .hero h1 { font-size: 28px; }
+    .hero-desc { font-size: 15px; }
+    .meeting-grid { grid-template-columns: 1fr; }
+    .interface-visual { flex-direction: column; gap: 12px; }
+    .interface-arrows { flex-direction: row; padding: 0; }
+    .cycle-loop { flex-wrap: wrap; justify-content: center; }
+    .nav-brand { display: none; }
+    .site-footer { padding: 24px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- NAVIGATION                                         -->
+<!-- ═══════════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">Individual GPS</div>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#running">Running Individual GPS</a>
+      <a href="#interface">Connecting to Org GPS</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- HERO                                               -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Growth for an unpredictable career</div>
+    <h1>Stop planning careers. <span>Navigate growth.</span></h1>
+    <p class="hero-desc">Giving people the clarity to steer their own development and the language to connect personal growth to organizational direction.</p>
+    <p class="hero-desc" style="font-size: 15px; color: var(--muted);">Just as a GPS helps you navigate to a destination, the Individual GPS Framework (Goal, Positioning, Strategy) helps you navigate your professional growth: where you're headed, where you are, and how you prefer to get there.</p>
+  </div>
+</div>
+
+<hr class="section-break">
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- SECTION 1: OVERVIEW                                -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="overview">
+<div class="container-wide">
+
+  <h1>Navigating personal growth with Individual GPS</h1>
+  <p class="subtitle">Three questions. Three time horizons. Applied to who you're becoming.</p>
+
+  <div class="anchor">
+    <div style="margin-bottom: 6px; font-size: 14px;">Individual GPS asks three questions about your growth:</div>
+    <strong><span style="color: var(--accent); font-size: 16px;">G</span>oal</strong> describes the professional you're growing into: <i>Where am I growing toward?</i><br>
+    <strong><span style="color: var(--accent); font-size: 16px;">P</span>ositioning</strong> measures how equipped you are right now: <i>How close am I?</i><br>
+    <strong><span style="color: var(--accent); font-size: 16px;">S</span>trategy</strong> resolves trade-offs in how you develop: <i>How do I prefer to grow?</i>
+    <div style="margin-top: 10px; font-size: 13px; color: var(--muted);">Individual GPS gives your development direction and structure without prescribing a path. You own it. Your People Lead supports it.</div>
+  </div>
+
+  <div class="callout" style="margin-top: 0; margin-bottom: 32px;">
+    <strong>Example:</strong> You want to become the kind of engineer who designs systems, not just builds features. That's your <strong>Goal</strong>. Right now you can implement designs others create, but you've never led an architecture decision. That's your <strong>Positioning</strong>. You learn best through real projects with a sparring partner, not through courses. That's your <strong>Strategy</strong>. When a growth approach isn't working, you try a different one. You don't change the destination. You don't pretend you're further along than you are.
+  </div>
+
+  <!-- CYCLE INDIVIDUAL GPS TABLE (primary, most familiar) -->
+  <h3 style="margin-top: 0;">The Cycle Individual GPS</h3>
+  <p>Most organizations already run in cycles: sprints, quarters, trimesters. The cycle individual GPS aligns your growth to the rhythm you're already working in.</p>
+
+  <table class="gps-table">
+    <thead>
+      <tr>
+        <th>Time Horizon<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">How long is this growth commitment?</span></th>
+        <th>Goal<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">Where am I growing toward?</span></th>
+        <th>Positioning<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">How close am I?</span></th>
+        <th>Strategy<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">How do I prefer to grow?</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="level-cell">
+          <span class="level-tag cycle">Cycle</span>
+          <span class="time-scale"><span class="stability-badge cycle-len">matches org cycle</span></span>
+          <div class="level-note">Build one specific capability this cycle. Concrete enough to verify.</div>
+        </td>
+        <td>
+          <div class="cell-desc">What specific capability you're building this cycle. Derived from the most important gap between where you are and where you need to be (for yourself and for the work). <span class="cell-ref">(Think: a learning objective.)</span></div>
+          <span class="cell-format">format: plain text</span>
+          <div class="cell-example cycle">"Lead an architecture decision end-to-end this trimester, including the documentation and the presentation to the team."</div>
+        </td>
+        <td>
+          <div class="cell-desc">Current skill level → target skill level on 1–3 specific skills. Observable behavior, not self-reported confidence. "Can I do X independently?" not "Do I feel ready for X?" <span class="cell-ref">(Think: skill matrix levels.)</span></div>
+          <span class="cell-format">format: current → target</span>
+          <div class="cell-example cycle">System design: I Know → I Am Skilled. Technical writing: I Am Skilled → I Mastered. Facilitation: not started → I Know.</div>
+        </td>
+        <td>
+          <div class="cell-desc">What learning approaches you're choosing and what you're deliberately not doing. Trade-offs, not a to-do list. <span class="cell-ref">(Think: how you prefer to learn.)</span></div>
+          <span class="cell-format">format: preferences + trade-offs</span>
+          <div class="cell-example cycle">Learn through pairing with [senior engineer], not through courses. Prioritize depth in system design over breadth. Volunteer for the billing architecture decision as the primary learning vehicle.</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- FRACTAL EXTENSION -->
+  <h3 style="margin-top: 40px;">The same pattern, two more time horizons</h3>
+  <p>The cycle individual GPS doesn't exist in isolation. The same three questions apply to your long-term direction and your daily work, forming a fractal pattern:</p>
+  <p style="margin-bottom: 4px;">
+    <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-infinite); display: inline-block;"></span> <strong>Infinite Individual GPS</strong></span>
+    gives long-term direction: the professional you're becoming.
+  </p>
+  <p style="margin-bottom: 4px;">
+    <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-cycle); display: inline-block;"></span> <strong>Cycle Individual GPS</strong></span>
+    builds one concrete capability within a bounded time frame.
+  </p>
+  <p style="margin-bottom: 20px;">
+    <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-immediate); display: inline-block;"></span> <strong>Immediate Individual GPS</strong></span>
+    makes the learning in every task intentional.
+  </p>
+  <p>Each level nests into the one above. An immediate growth intention serves a cycle growth strategy. A cycle growth goal addresses the most important gap on the way to the infinite aspiration. The metaphor stays the same. The scope changes.</p>
+
+  <table class="gps-table">
+    <thead>
+      <tr>
+        <th>Time Horizon<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">How long is this growth commitment?</span></th>
+        <th>Goal<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">Where am I growing toward?</span></th>
+        <th>Positioning<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">How close am I?</span></th>
+        <th>Strategy<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">How do I prefer to grow?</span></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- INFINITE INDIVIDUAL GPS -->
+      <tr>
+        <td class="level-cell">
+          <span class="level-tag infinite">Infinite</span>
+          <span class="time-scale"><span class="stability-badge rare">near-permanent</span></span>
+          <div class="level-note">The long game. The professional you're becoming. Persists across cycles and roles.</div>
+        </td>
+        <td>
+          <div class="cell-desc">The kind of professional you want to be known as. Not a job title. A description of the contribution you want to make and the capabilities that enable it. This rarely changes. When it does, it's a significant life event. <span class="cell-ref">(Think: professional identity.)</span></div>
+          <span class="cell-format">format: plain text</span>
+          <div class="cell-example infinite">"I design organizations where people do their best work. I'm the person leaders call when coordination is broken and they don't know why."</div>
+        </td>
+        <td>
+          <div class="cell-desc">The single number that tells you over time whether you're becoming the professional you described. Must be independently observable, not self-reported. <span class="cell-ref">(Think: One Metric That Matters from Lean Startup, applied to your growth.)</span></div>
+          <span class="cell-format">format: single metric</span>
+          <div class="cell-example infinite">Number of organizations where I redesigned coordination and the design is still running a year later.</div>
+        </td>
+        <td>
+          <div class="cell-desc">Your reinforcing growth loop. The pattern that compounds your development over time. <span class="cell-ref">(Think: a personal flywheel.)</span></div>
+          <span class="cell-format">format: reinforcing loop</span>
+          <div class="cell-example infinite">Take on complex problems → Learn through failure → Teach what I learned → Get trusted with harder problems → …</div>
+        </td>
+      </tr>
+
+      <!-- CYCLE INDIVIDUAL GPS -->
+      <tr>
+        <td class="level-cell">
+          <span class="level-tag cycle">Cycle</span>
+          <span class="time-scale"><span class="stability-badge cycle-len">matches org cycle</span></span>
+          <div class="level-note">Build one specific capability this cycle. Concrete enough to verify.</div>
+        </td>
+        <td>
+          <div class="cell-desc">What specific capability you're building this cycle. Derived from the most important gap between where you are and where you need to be (for yourself and for the work). <span class="cell-ref">(Think: a learning objective.)</span></div>
+          <span class="cell-format">format: plain text</span>
+          <div class="cell-example cycle">"Lead an architecture decision end-to-end this trimester, including the documentation and the presentation to the team."</div>
+        </td>
+        <td>
+          <div class="cell-desc">Current skill level → target skill level on 1–3 specific skills. Observable behavior, not self-reported confidence. <span class="cell-ref">(Think: skill matrix levels.)</span></div>
+          <span class="cell-format">format: current → target</span>
+          <div class="cell-example cycle">System design: I Know → I Am Skilled. Technical writing: I Am Skilled → I Mastered. Facilitation: not started → I Know.</div>
+        </td>
+        <td>
+          <div class="cell-desc">What learning approaches you're choosing and what you're deliberately not doing. Trade-offs, not a to-do list. <span class="cell-ref">(Think: how you prefer to learn.)</span></div>
+          <span class="cell-format">format: preferences + trade-offs</span>
+          <div class="cell-example cycle">Learn through pairing with [senior engineer], not through courses. Prioritize depth in system design over breadth. Volunteer for the billing architecture decision as the primary learning vehicle.</div>
+        </td>
+      </tr>
+
+      <!-- IMMEDIATE INDIVIDUAL GPS -->
+      <tr>
+        <td class="level-cell">
+          <span class="level-tag immediate">Immediate</span>
+          <span class="time-scale"><span class="stability-badge hours">hours – days</span></span>
+          <div class="level-note">Make learning intentional in every task. One line on the same artifact as your task GPS.</div>
+        </td>
+        <td>
+          <div class="cell-desc">What you're learning by doing this task. Not a separate exercise: one line added to the task itself. Links to the cycle growth strategy it serves. <span class="cell-ref">(Think: a learning intention.)</span></div>
+          <span class="cell-format">format: one line</span>
+          <div class="cell-example immediate">"I'm also building system design thinking through this task. First time scoping a service boundary on my own."</div>
+        </td>
+        <td>
+          <div class="cell-desc">What you can do now vs. what you'll be equipped to do when this task is done. <span class="cell-ref">(Think: before and after.)</span></div>
+          <span class="cell-format">format: before → after</span>
+          <div class="cell-example immediate">Before: I've only seen service boundaries defined by others. After: I've defined one myself, made trade-offs, and can explain why.</div>
+        </td>
+        <td>
+          <div class="cell-desc">How you're approaching this task to maximize learning. The choice between the safe route (deliver fast, learn little) and the stretch route (slower, builds capability). <span class="cell-ref">(Think: deliberate practice.)</span></div>
+          <span class="cell-format">format: approach choice</span>
+          <div class="cell-example immediate">I'll draft the service boundary myself first, then review with [senior engineer], rather than having them define it and me implementing.</div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <div class="callout" style="margin-top: 20px;">
+    <strong>The fractal advantage for growth.</strong> People who make their learning intentions explicit on daily tasks will recognize the same pattern when they set quarterly growth goals or articulate a long-term professional aspiration. The framework teaches itself through use. Growth stops feeling like a separate activity bolted onto work, because it's embedded in the same structure.
+  </div>
+
+  <!-- Adaptation -->
+  <div class="adapt-section">
+    <div class="adapt-title">When growth stalls, adapt in this order:</div>
+    <div class="adapt-track">
+      <div class="adapt-step">
+        <div class="adapt-num" style="background: #9A9A94;">1</div>
+        <div class="adapt-text">
+          <div class="adapt-label">Change the learning approach</div>
+          <div class="adapt-desc">Try a different way to grow. Cheapest to change.</div>
+        </div>
+      </div>
+      <div class="adapt-connector">
+        <svg width="24" height="12" viewBox="0 0 24 12"><path d="M0 6h20m0 0l-4-4m4 4l-4 4" fill="none" stroke="#9A9A94" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="adapt-step">
+        <div class="adapt-num" style="background: #9A9A94;">2</div>
+        <div class="adapt-text">
+          <div class="adapt-label">Adjust the skill target</div>
+          <div class="adapt-desc">Reduce ambition based on what you learned about yourself.</div>
+        </div>
+      </div>
+      <div class="adapt-connector">
+        <svg width="24" height="12" viewBox="0 0 24 12"><path d="M0 6h20m0 0l-4-4m4 4l-4 4" fill="none" stroke="#9A9A94" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="adapt-step">
+        <div class="adapt-num" style="background: #9A9A94;">3</div>
+        <div class="adapt-text">
+          <div class="adapt-label">Rethink the growth direction</div>
+          <div class="adapt-desc">Only if you learned something fundamental. Most expensive.</div>
+        </div>
+      </div>
+    </div>
+    <div class="adapt-note">Each step is more expensive than the last, so exhaust the cheaper options first. You own these changes. Your People Lead is a sparring partner, not a gatekeeper.</div>
+  </div>
+
+  <!-- Bottom row -->
+  <div class="bottom-row">
+    <div class="bottom-box">
+      <div class="bottom-box-title">Who owns it</div>
+      <div class="fn-item"><div class="fn-marker">You</div><div><strong>You write it, adapt it, and are accountable for following through.</strong> This is your GPS. No one else can write it for you, because no one else knows where you want to go.</div></div>
+      <div class="fn-item"><div class="fn-marker" style="font-size: 9px;">Lead</div><div><strong>Your People Lead is a sparring partner.</strong> They challenge your self-assessment, help you find growth terrain in the work, and hold you accountable for the commitments you made to yourself. They don't set your goals.</div></div>
+      <div class="fn-item"><div class="fn-marker" style="font-size: 9px;">Org</div><div><strong>The organization provides the terrain.</strong> Work that stretches you, access to people you can learn from, and enough slack to take the slower route when it builds capability.</div></div>
+
+      <div style="margin-top: 16px; padding: 10px 14px; background: var(--bg); border-radius: 6px; font-size: 12px; line-height: 1.5;">
+        <div style="font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; font-size: 10px; margin-bottom: 2px;">The skill matrix as positioning tool</div>
+        A <a href="#skill-matrix" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">skill matrix</a> maps the capabilities required in a function across four levels: I Know, I Am Skilled, I Mastered, I Teach. It provides the shared vocabulary for positioning at the cycle level. Your self-assessment on the matrix is your starting location. Your target level is where you're headed.
+      </div>
+    </div>
+
+    <div class="bottom-box">
+      <div class="bottom-box-title">Principles</div>
+      <div class="fn-item"><div class="fn-marker">01</div><div><strong>Each time horizon nests into the one above.</strong> An immediate learning intention serves a cycle growth strategy. A cycle growth goal addresses a gap on the way to the infinite aspiration. Growth becomes coherent across scales.</div></div>
+      <div class="fn-item"><div class="fn-marker">02</div><div><strong>Growth is self-chosen.</strong> Imposed development goals create compliance, not capability. When you choose what to grow toward, the motivation is intrinsic and the learning sticks.</div></div>
+      <div class="fn-item"><div class="fn-marker">03</div><div><strong>Observable over self-reported.</strong> "I handled this situation independently" beats "I feel confident about this." Positioning works when it's grounded in evidence, not narrative.</div></div>
+      <div class="fn-item"><div class="fn-marker">04</div><div><strong>Growth is part of the work, not a perk.</strong> Every task is both a delivery opportunity and a learning opportunity. Individual GPS makes the learning side explicit.</div></div>
+      <div class="fn-item"><div class="fn-marker">05</div><div><strong>Roles evolve with people.</strong> When someone's individual GPS outgrows their current role, that's a signal to expand the role or find a better fit. Growth doesn't require leaving.</div></div>
+    </div>
+  </div>
+
+  <!-- SKILL MATRIX -->
+  <h2 id="skill-matrix">The skill matrix</h2>
+
+  <p>The skill matrix is the positioning tool for Individual GPS. It maps the capabilities required in a function across four levels of proficiency. Each person places themselves on the matrix for each skill, creating a shared picture of where they stand and where they're growing.</p>
+
+  <p>The four levels describe observable capability, not seniority or tenure:</p>
+
+  <div style="margin: 16px 0 24px; font-size: 14px; line-height: 1.8; color: #3A3A34;">
+    <strong>I Know</strong> — You understand the basics and can apply the skill with guidance.<br>
+    <strong>I Am Skilled</strong> — You perform the skill independently and handle routine complexity.<br>
+    <strong>I Mastered</strong> — You handle complex situations, make trade-offs, and others seek your judgment.<br>
+    <strong>I Teach</strong> — You develop others in this skill and shape how the function practices it.
+  </div>
+
+  <div class="skill-matrix-wrap">
+    <div class="skill-matrix-title">Example: Engineering function — one person's self-assessment</div>
+    <div class="skill-matrix-sub">This engineer is assessing their current level and setting a cycle target for system design.</div>
+
+    <table class="skill-matrix">
+      <thead>
+        <tr>
+          <th></th>
+          <th>System design</th>
+          <th>Code quality</th>
+          <th>Technical writing</th>
+          <th>Facilitation</th>
+          <th>Debugging</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>I Teach</td>
+          <td><span class="skill-dot empty"></span></td>
+          <td><span class="skill-dot empty"></span></td>
+          <td><span class="skill-dot empty"></span></td>
+          <td><span class="skill-dot empty"></span></td>
+          <td><span class="skill-dot empty"></span></td>
+        </tr>
+        <tr>
+          <td>I Mastered</td>
+          <td><span class="skill-dot empty"></span></td>
+          <td><span class="skill-dot filled"></span></td>
+          <td><span class="skill-dot target"></span></td>
+          <td><span class="skill-dot empty"></span></td>
+          <td><span class="skill-dot filled"></span></td>
+        </tr>
+        <tr>
+          <td>I Am Skilled</td>
+          <td><span class="skill-dot target"></span></td>
+          <td></td>
+          <td><span class="skill-dot filled"></span></td>
+          <td><span class="skill-dot empty"></span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>I Know</td>
+          <td><span class="skill-dot filled"></span></td>
+          <td></td>
+          <td></td>
+          <td><span class="skill-dot target"></span></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="skill-legend">
+      <div class="skill-legend-item"><span class="skill-dot filled" style="width: 14px; height: 14px;"></span> Current level</div>
+      <div class="skill-legend-item"><span class="skill-dot target" style="width: 14px; height: 14px;"></span> Cycle target</div>
+    </div>
+  </div>
+
+  <p>This person's cycle GPS writes itself from the matrix: system design from I Know to I Am Skilled, technical writing from I Am Skilled to I Mastered, facilitation from not started to I Know. The matrix makes the gap visible and the target concrete.</p>
+
+  <div class="callout">
+    <strong>Who creates the skill matrix?</strong> The function lead drafts the initial list of skills based on what the function actually needs. The list stays deliberately short (5–8 skills) and is reviewed each cycle. People self-assess. Peers and the People Lead can challenge the assessment. The matrix is a conversation tool, not a performance rating.
+  </div>
+
+</div>
+</section>
+
+<hr class="section-break">
+
+<div class="bridge">
+  <p class="bridge-text">Organizational GPS navigates what you produce together. Individual GPS navigates who you become. The two connect through a simple principle: your growth makes you more capable of contributing to the team's goals, and the team's goals give you real terrain to grow on.</p>
+</div>
+
+<hr class="section-break">
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- SECTION 2: RUNNING INDIVIDUAL GPS                  -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="running">
+<div class="container-narrow">
+
+  <h1>Running Individual GPS</h1>
+  <p class="subtitle">The operational guide. How to set growth goals, check in on progress, and reflect on what you learned.</p>
+
+  <p>Individual GPS runs on the same cycle rhythm as the organization. The growth cycle piggybacks on existing structures: 1:1s, sprint retrospectives, and cycle reviews. No additional meetings required.</p>
+
+  <!-- THE GROWTH CYCLE -->
+  <h2>The growth cycle</h2>
+
+  <p>Every cycle follows the same rhythm:</p>
+
+  <div class="cycle-loop">
+    <div class="cycle-phase active">
+      <div class="phase-label">Start of cycle</div>
+      Goal setting
+    </div>
+    <div class="cycle-phase">
+      <div class="phase-label">During cycle</div>
+      Check-in
+    </div>
+    <div class="cycle-phase">
+      <div class="phase-label">During cycle</div>
+      Check-in
+    </div>
+    <div class="cycle-phase">
+      <div class="phase-label">End of cycle</div>
+      Reflection
+    </div>
+  </div>
+  <div class="cycle-return">↩ Reflection informs next cycle's goal setting</div>
+
+  <p style="margin-top: 20px;">Growth check-ins happen inside existing 1:1s. Not as an agenda takeover: five minutes at the start or end is enough. The People Lead's job is to keep the conversation honest, not to evaluate.</p>
+
+  <hr class="divider">
+
+  <!-- GOAL SETTING -->
+  <h2>Growth goal setting</h2>
+
+  <p>At the start of each cycle, review your infinite individual GPS and the team's cycle GPS, then set your growth goals in four steps. Start from where you are, not from where you want to be.</p>
+
+  <div class="step-track">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag p">P</span> Positioning (Current)</div>
+        <div class="step-question">"Where am I honestly right now?"</div>
+        <div class="step-desc">Self-assess on the skills that matter for this cycle's work. Use the skill matrix as a starting point, but ground it in recent evidence: what did you actually do in the last cycle, and what does that tell you about your capabilities?</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag g">G</span> Goal</div>
+        <div class="step-question">"What capability would make the biggest difference?"</div>
+        <div class="step-desc">Pick the growth goal that addresses the most important gap. Ideally, this is where your personal aspiration and the team's needs overlap. That overlap is where growth becomes meaningful, not bureaucratic.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag p">P</span> Positioning (Target)</div>
+        <div class="step-question">"What will I be able to do by the end of this cycle that I can't do now?"</div>
+        <div class="step-desc">Describe the target in behavioral terms. Not "feel more confident about X" but "independently handle Y." Use the skill matrix levels. One level up in one skill is a serious achievement. Two levels up is unrealistic for most cycle lengths.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag s">S</span> Strategy</div>
+        <div class="step-question">"How will I actually learn this?"</div>
+        <div class="step-desc">Choose your learning approach and state what you're not doing. Most learning happens through actually doing the thing you want to learn (roughly 70%), some through learning from your peers (20%), little through formal study (10%). State which tasks in the upcoming cycle will be your growth vehicles, and who you'll learn from.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout-gate">
+    <strong>The ownership test.</strong> Before finalizing your individual GPS, ask: is this something I genuinely want, or something I think my People Lead wants to hear? If you wrote it to satisfy someone else, it won't survive contact with real work. Growth goals that come from obligation get dropped at the first deadline.
+  </div>
+
+  <div class="callout">
+    <strong>Why start with positioning, not the goal?</strong> Because you can't set a meaningful growth target without knowing where you actually stand. Self-assessment surfaces the gaps that matter. The goal becomes a response to what those gaps tell you, not an aspiration disconnected from reality.
+  </div>
+
+  <hr class="divider">
+
+  <!-- CHECK-IN -->
+  <h2>Growth check-in</h2>
+
+  <p>Growth check-ins happen inside existing 1:1s. Five minutes is enough. The purpose isn't tracking: it's keeping the growth intention alive against the pull of daily delivery pressure. When growth gets squeezed out by deadlines repeatedly, that itself is worth discussing.</p>
+
+  <p>A check-in follows three steps:</p>
+
+  <div class="step-track">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag p">P</span> Positioning (Current)</div>
+        <div class="step-desc">What happened since last time? Did I get to practice what I planned? What evidence do I have that I'm building this capability?</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag s">S</span> Strategy</div>
+        <div class="step-desc">Is the learning approach working? Am I actually learning through the vehicles I chose, or am I defaulting to safe, familiar work? Do I need a different approach?</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag g">G</span> Goal</div>
+        <div class="step-desc">Is this still the right thing to grow toward, given what I've learned about myself and the work? Has something changed that makes a different growth goal more important?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>The People Lead's role during check-ins.</strong> Challenge gently. When someone says "I think I'm making progress," ask for the evidence. When someone says "I didn't have time for growth this cycle," explore whether that's a capacity problem or an avoidance signal. The goal is honesty, not comfort.
+  </div>
+
+  <hr class="divider">
+
+  <!-- REFLECTION -->
+  <h2>Growth reflection</h2>
+
+  <p>At the end of each cycle, reflect on what happened. This is the most valuable part: the learning from learning. Growth reflection happens in a dedicated 1:1 (30–60 minutes) or as the primary topic of a regular 1:1 at cycle end.</p>
+
+  <div class="step-track">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag p">P</span> Positioning (Achieved)</div>
+        <div class="step-desc">Where did I actually land? What can I do now that I couldn't do at the start of this cycle? What's the behavioral evidence?</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag s">S</span> Strategy (Lessons)</div>
+        <div class="step-desc">What worked and what didn't? Which learning approaches actually built capability, and which ones felt productive but weren't? What will I do differently next cycle?</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-label"><span class="step-gps-tag g">G</span> Goal (Review)</div>
+        <div class="step-desc">Did I reach the goal? Was it the right goal? What surprised me about my own development? What does this tell me about my infinite aspiration?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Celebrate.</strong> Growth in capability is harder to feel than shipping a feature. Make it visible. Update the skill matrix. Name specifically what changed. The resulting energy sustains the next cycle better than a sense of "not enough" ever could.
+  </div>
+
+  <div class="callout-gate">
+    <strong>Reflection informs the next cycle.</strong> Those who grew as planned set a more ambitious target. Those who fell short with good reasons adjust their approach or their ambition. A pattern of stalling without adjustment needs a structural conversation: is this really your goal, or is the environment not providing the terrain?
+  </div>
+
+  <hr class="divider">
+
+  <!-- KEEPING IT ALIVE -->
+  <h2>Keeping growth alive</h2>
+
+  <div class="callout">
+    <strong>The minimum.</strong> If you don't think about your growth goals for weeks at a time, they're not real. The most common failure mode: growth goals are set with intention, forgotten in daily delivery, and "rediscovered" at cycle's end with disappointment.
+  </div>
+
+  <div class="meeting-grid">
+    <div class="meeting-card">
+      <div class="meeting-name">Embed in tasks</div>
+      <div class="meeting-freq">immediate GPS · daily</div>
+      <div class="meeting-desc">When you start a task, add one line: "I'm also building [skill] through this." When you finish, note what you learned. This turns delivery into deliberate practice.</div>
+    </div>
+    <div class="meeting-card">
+      <div class="meeting-name">Surface in 1:1s</div>
+      <div class="meeting-freq">check-ins · every 1–4 weeks</div>
+      <div class="meeting-desc">Bring your individual GPS to every 1:1. Five minutes is enough. Your People Lead keeps you honest: "Where's the evidence? What did you actually try?"</div>
+    </div>
+    <div class="meeting-card">
+      <div class="meeting-name">Connect to the long game</div>
+      <div class="meeting-freq">infinite GPS · every cycle</div>
+      <div class="meeting-desc">At cycle boundaries, zoom out: does your cycle growth goal still serve your infinite aspiration? Are you on a path that leads where you actually want to go?</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- GETTING STARTED -->
+  <h2>Getting started</h2>
+
+  <div class="step-track">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-label">Introduce Individual GPS in 1:1s</div>
+        <div class="step-desc">Start with People Leads. Walk them through the framework and have them write their own individual GPS first. You can't guide someone through a process you haven't experienced yourself.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-label">Start with cycle GPS only</div>
+        <div class="step-desc">Don't introduce all three time horizons at once. Start with one cycle growth goal per person. Keep it simple. The infinite and immediate levels come later, once the cycle pattern is familiar.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-label">Use the skill matrix as the positioning tool</div>
+        <div class="step-desc">If your function already has a skill matrix, use it. If not, draft one with the function lead. The matrix provides the shared vocabulary for growth conversations. Without it, positioning stays vague.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-label">Add the immediate level gradually</div>
+        <div class="step-desc">Begin with a sprint retrospective prompt: "What did you learn this sprint?" Once people are used to reflecting on learning, invite them to state learning intentions at the start of tasks. Don't mandate it. Let the pattern spread through example.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <div class="step-label">Introduce the infinite level when it's needed</div>
+        <div class="step-desc">The infinite individual GPS matters most when someone is at a crossroads: unsure about their direction, outgrowing their role, or unclear about what to invest in next. It's a conversation tool for those moments, not a form to fill out on day one.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<hr class="section-break">
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- SECTION 3: INTERFACE                               -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section id="interface">
+<div class="container-narrow">
+
+  <h1>Connecting Individual GPS to Organizational GPS</h1>
+  <p class="subtitle">Two systems, one structure. Where personal growth and organizational direction meet.</p>
+
+  <p>Individual GPS and organizational GPS are separate frameworks. Individual GPS is about who you're becoming. Organizational GPS is about what you're producing together. They use the same structure (Goal, Positioning, Strategy across three time horizons) because the thinking pattern is the same. But the content is different.</p>
+
+  <p>The power is in the connection. Two interface points link them:</p>
+
+  <h3 style="margin-top: 32px;">Interface 1: Cycle alignment</h3>
+
+  <p>During cycle goal setting, each person identifies 1–3 growth goals that the cycle's work enables. The question that creates the link: <i>"Given the team's cycle GPS, what can I learn by contributing to it?"</i></p>
+
+  <div class="interface-visual">
+    <div class="interface-scope">
+      <div class="interface-scope-label" style="color: var(--org-accent);">Team Cycle GPS</div>
+      <div class="interface-scope-sub">What we're producing this cycle</div>
+    </div>
+    <div class="interface-arrows">
+      <div class="interface-arrow"><span>provides terrain</span> →</div>
+      <div class="interface-arrow">← <span>builds capability</span></div>
+    </div>
+    <div class="interface-scope">
+      <div class="interface-scope-label" style="color: var(--accent);">Individual Cycle GPS</div>
+      <div class="interface-scope-sub">What I'm learning this cycle</div>
+    </div>
+  </div>
+
+  <p>Review these for fit: "Does this cycle's work actually give you terrain to grow on? If not, let's adjust either your growth goal or your task allocation." The strongest growth goals sit at the overlap between what the organization needs and what the individual wants to become.</p>
+
+  <h3>Interface 2: Immediate embedding</h3>
+
+  <p>When someone writes their immediate organizational GPS for a task, they add one line for their individual GPS: what they're learning through this task.</p>
+
+  <div class="callout" style="margin-top: 16px;">
+    <strong>Example: one task, both lenses</strong><br><br>
+    <strong style="color: var(--org-accent);">Org GPS:</strong> "Marketing site explains what we do to a first-time visitor."<br>
+    <strong style="color: var(--accent);">Individual GPS:</strong> "I'm building copywriting skills through this: first time translating technical capability into user-facing language."<br><br>
+    Same task. Two orientations. One produces the deliverable. The other produces the capability.
+  </div>
+
+  <p>This also makes visible when someone is always doing what they're already good at (no growth) or always stretching beyond their current capability (risking delivery). Both are signals worth discussing.</p>
+
+  <hr class="divider">
+
+  <h2>The meaning equation</h2>
+
+  <p>Organizational GPS alone produces orientation: you know what you're working toward. Individual GPS alone produces self-awareness: you know who you're becoming.</p>
+  <p>Combined, they produce meaning: <i>I'm working toward something the organization needs, and the way I'm doing it is making me the person I want to become.</i></p>
+  <p>This is the reason the same GPS structure works at both levels: not because individual growth is organizational alignment in miniature, but because people who see their growth reflected in the work they do will bring more to it than people who treat growth as a separate exercise.</p>
+
+  <hr class="divider">
+
+  <h2>The fractal onboarding path</h2>
+
+  <p>If you're introducing both GPS frameworks, start with the individual level. People learn "goal, positioning, strategy" as a thinking pattern applied to their own growth. Then introduce organizational GPS. The pattern is already familiar: the same structure, applied to a different scope.</p>
+  <p>This is the opposite of how most frameworks roll out (top-down, company first). It works because the individual level is the lowest-stakes environment to learn the pattern. Someone who has practiced GPS on their own development will intuitively understand team and company GPS when they encounter it.</p>
+
+  <div class="callout-gate">
+    <strong>Individual GPS can start before organizational GPS is in place.</strong> People can set growth goals, check in during 1:1s, and reflect at cycle's end without any company-level GPS existing yet. The organizational layer adds alignment. The individual layer adds meaning. You can build them in either order.
+  </div>
+
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- FOOTER                                             -->
+<!-- ═══════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-context">Individual GPS is part of the <a href="https://www.newworkbydesign.com">New Work by Design</a> transformation course, which covers the nine key practices for creating fulfilling workplaces. For the organizational GPS framework, see <a href="https://gps.newworkbydesign.com">gps.newworkbydesign.com</a>.</p>
+    <div class="footer-links">
+      <a href="https://www.newworkbydesign.com">newworkbydesign.com</a>
+      <a href="https://gps.newworkbydesign.com">Organizational GPS</a>
+      <a href="https://www.linkedin.com/in/manuelkueblboeck/">LinkedIn</a>
+    </div>
+    <p class="footer-copy">© 2026 Manuel Küblböck · Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
