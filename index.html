@@ -699,6 +699,57 @@
   .option-label { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
   .option-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
 
+  /* ═══════ TEMPLATES ═══════ */
+  .tpl-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 16px 0 12px;
+  }
+
+  .tpl-card {
+    display: block;
+    background: var(--cell-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .tpl-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 2px 8px rgba(45, 90, 61, 0.10);
+  }
+
+  .tpl-scope {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border-radius: 4px;
+    padding: 2px 7px;
+    margin-bottom: 8px;
+  }
+
+  .tpl-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .tpl-name span { color: var(--accent); font-weight: 500; }
+  .tpl-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .tpl-note { font-size: 12px; color: var(--muted); line-height: 1.5; margin: 0; }
+
+  .tpl-note a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(45, 90, 61, 0.35);
+  }
+
+  .tpl-note a:hover { border-bottom-color: var(--accent); }
+
   /* ═══════ COMPARISON: Table ═══════ */
   .comp-table {
     width: 100%;
@@ -785,6 +836,7 @@
   @media (max-width: 700px) {
     .meeting-grid { grid-template-columns: 1fr; }
     .option-grid { grid-template-columns: 1fr; }
+    .tpl-grid { grid-template-columns: 1fr; }
     .pitch-flow { flex-direction: column; }
     .pitch-step { border-radius: 0 !important; border-left: 1px solid var(--border) !important; }
     .pitch-step:first-child { border-radius: 10px 10px 0 0 !important; }
@@ -933,6 +985,7 @@
     <div class="nav-links">
       <a href="#overview">Overview</a>
       <a href="#running">Running GPS</a>
+      <a href="#templates">Templates</a>
       <a href="#comparison">Comparison</a>
     </div>
   </div>
@@ -1394,6 +1447,27 @@
     <strong>Why start with positioning, not the goal?</strong> Because you can't set a meaningful destination without knowing where you are. The current location surfaces the metrics that matter. The goal becomes a response to what those metrics tell you, not a wish disconnected from reality.
   </div>
 
+  <h3 id="templates" style="margin-top: 36px;">Templates</h3>
+
+  <p>Two sheets for running the steps above. Both are Google Docs: opening one makes your own copy, which you can fill in on screen or print.</p>
+
+  <div class="tpl-grid">
+    <a class="tpl-card" href="https://docs.google.com/document/d/1gNWj94liDor9vDQ7Sh5-nLa0qsfrVm-pBB6GDh75lWk/copy" target="_blank" rel="noopener">
+      <span class="tpl-scope">One per goal</span>
+      <div class="tpl-name">GPS sheet <span>&rarr;</span></div>
+      <div class="tpl-desc">The five strategizing steps as a fill-in sheet: current positioning, goal, target positioning, strategy, guardrails. Works from your first cycle, at any size.</div>
+    </a>
+    <a class="tpl-card" href="https://docs.google.com/document/d/1F03LyhX2mIQnMdfqJWn9OzGMDxYiG82F9cz6y4XiGac/copy" target="_blank" rel="noopener">
+      <span class="tpl-scope">One per team per cycle</span>
+      <div class="tpl-name">Cover sheet <span>&rarr;</span></div>
+      <div class="tpl-desc">The pitch wrapper: the parent GPS in your own words, up to three goals, dependencies, investment ask. Starts making sense once teams propose their own goals, usually past 50 people.</div>
+    </a>
+  </div>
+
+  <p class="tpl-note">No Google account? Download the <a href="https://docs.google.com/document/d/1gNWj94liDor9vDQ7Sh5-nLa0qsfrVm-pBB6GDh75lWk/export?format=docx">GPS sheet</a> or the <a href="https://docs.google.com/document/d/1F03LyhX2mIQnMdfqJWn9OzGMDxYiG82F9cz6y4XiGac/export?format=docx">cover sheet</a> as Word files.</p>
+
+  <p class="tpl-note" style="margin-top: 6px;">Both are licensed under CC BY-SA 4.0, like the rest of this page. Adapt them, and pass the adaptation on under the same terms.</p>
+
   <hr class="divider">
 
   <!-- CHECK-IN -->
@@ -1539,6 +1613,8 @@
       <strong>Investment ask:</strong> What resources do we need to deliver this?
     </div>
   </div>
+
+  <p style="font-size: 13px; color: var(--muted);">The <a href="#templates" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">cover sheet template</a> holds both parts, with a goal sheet attached per goal.</p>
 
   <div class="pitch-flow">
     <div class="pitch-step">
