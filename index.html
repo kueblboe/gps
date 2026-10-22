@@ -49,6 +49,10 @@
     /* Comparison: GPS alias */
     --gps: #2D5A3D;
     --gps-bg: #E8F0EB;
+
+    /* Comparison: SAFe */
+    --safe: #6B4E8A;
+    --safe-bg: #EFEAF4;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -786,6 +790,7 @@
   .fw-tag.gps { background: var(--gps-bg); color: var(--gps); }
   .fw-tag.okr { background: var(--okr-bg); color: var(--okr); }
   .fw-tag.shapeup { background: var(--shapeup-bg); color: var(--shapeup); }
+  .fw-tag.safe { background: var(--safe-bg); color: var(--safe); }
 
   .fw-origin { font-size: 11px; font-weight: 400; color: var(--muted); letter-spacing: 0; text-transform: none; }
 
@@ -818,6 +823,23 @@
   }
 
   .comp-footer strong { color: var(--fg); }
+
+  .comp-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .comp-scroll .comp-table { min-width: 860px; }
+
+  .comp-deep { margin-top: 56px; max-width: 800px; }
+  .comp-deep h3 { margin-bottom: 10px; }
+  .comp-deep p { margin-bottom: 14px; }
+  .map-table { width: 100%; border-collapse: collapse; margin: 8px 0 24px; font-size: 13px; }
+  .map-table th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); font-weight: 500; padding: 8px 10px; border-bottom: 2px solid var(--border); }
+  .map-table td { padding: 10px; vertical-align: top; border-bottom: 1px solid var(--border); line-height: 1.5; }
+  .map-table td:first-child { font-weight: 600; white-space: nowrap; }
+  .comp-more summary { cursor: pointer; color: var(--accent); font-size: 14px; font-weight: 500; margin: 4px 0 16px; list-style: none; }
+  .comp-more summary::-webkit-details-marker { display: none; }
+  .comp-more summary::before { content: '+ '; }
+  .comp-more[open] summary::before { content: '− '; }
+  .comp-more[open] summary { margin-bottom: 20px; }
+  .comp-source { font-size: 12px; color: var(--muted); margin-top: 20px; line-height: 1.6; }
 
   /* ═══════ RESPONSIVE ═══════ */
   @media (max-width: 900px) {
@@ -1515,7 +1537,7 @@
   <!-- REVIEW -->
   <h2>Review</h2>
 
-  <h3>What marks the end of a journey?</h3>
+  <h3 id="endings">What marks the end of a journey?</h3>
 
   <p>Four things can end a goal cycle. Only the first one is intuitive. The other three prevent death marches.</p>
 
@@ -1764,6 +1786,7 @@
   <h1>Goal Alignment Frameworks Compared</h1>
   <p class="subtitle">Four approaches to aligning direction. Same challenge, different trade-offs.</p>
 
+  <div class="comp-scroll">
   <table class="comp-table">
     <thead>
       <tr>
@@ -1780,6 +1803,10 @@
           <div class="fw-header"><span class="fw-tag shapeup">Shape Up</span></div>
           <div class="fw-origin">Basecamp</div>
         </th>
+        <th>
+          <div class="fw-header"><span class="fw-tag safe">SAFe</span></div>
+          <div class="fw-origin">Scaled Agile, Inc.</div>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -1792,6 +1819,7 @@
         <td>Goal + Positioning + Strategy at each time horizon</td>
         <td>Objective + Key Results (+ Initiatives, added later by practitioners)</td>
         <td>Pitch (problem + appetite + solution boundaries)</td>
+        <td>Strategic themes → PI objectives (valued by business owners) → features ranked by WSJF on the ART planning board</td>
       </tr>
 
       <tr>
@@ -1802,6 +1830,7 @@
         <td>Three: infinite, cycle (1 week–1 year), immediate (hours–days)</td>
         <td>One: quarterly (sometimes annual)</td>
         <td>One: fixed 6-week cycles + 2-week cooldown</td>
+        <td>Three: portfolio (themes, roadmap), Planning Interval (8–12 weeks), iteration (usually 2 weeks)</td>
       </tr>
 
       <tr>
@@ -1812,6 +1841,7 @@
         <td>Scales with maturity. Founder-led early on, progressing to team-pitched as domain ownership grows. At maturity: each scope proposes cycle goals as investment pitches, the scope above acts as investment board.</td>
         <td>Varies. Cascaded top-down, bottom-up, or bidirectional depending on implementation.</td>
         <td>Leadership selects pitches at the betting table. Anyone can pitch, but leadership decides.</td>
+        <td>Product management ranks features, business owners assign value. Teams decide how much they commit to during PI Planning.</td>
       </tr>
 
       <tr>
@@ -1822,6 +1852,7 @@
         <td>Metrics on a spectrum (current → target). One metric at infinite level, multiple at cycle level. Observable states at immediate level.</td>
         <td>Key Results: measurable outcomes, typically 3–5 per objective. Scored 0–1.0.</td>
         <td>Hill charts: uphill (figuring out) → downhill (executing). No metrics.</td>
+        <td>ART predictability: business value achieved vs. planned on committed objectives. 80–100% counts as healthy.</td>
       </tr>
 
       <tr>
@@ -1832,6 +1863,7 @@
         <td>Explicit, separate artifact. Decision guide for forks, not a task list. Described as a visual map.</td>
         <td class="gap">Not native to the original model. 'Initiatives' are often added, but usually degrade into rigid task lists rather than true strategic guidelines.</td>
         <td>Implicit in the shaped pitch. Boundaries ("what's in, what's out") guide the team.</td>
+        <td class="gap">Expressed as a ranked feature backlog. That's a route, not a guide for forks in the road.</td>
       </tr>
 
       <tr>
@@ -1842,6 +1874,7 @@
         <td>Explicitly separated. Positioning stays stable as reference point. Strategy adapts freely.</td>
         <td class="gap">Blurred. Key Results mix "where we are" with "how we get there." No separation.</td>
         <td>Partially. Appetite sets the constraint. Hill chart tracks confidence, not metrics. Approach is free.</td>
+        <td class="gap">Blurred. The planned features are both the route and the yardstick: predictability measures delivery against the plan.</td>
       </tr>
 
       <tr>
@@ -1852,6 +1885,7 @@
         <td>Explicit sequence: change strategy first → adjust positioning → rethink goal. Cheapest change first.</td>
         <td>No prescribed adaptation sequence. Check-ins happen but there's no explicit protocol for what to change first.</td>
         <td>Cut scope, don't extend time. If it doesn't ship, it returns to the pitch pile for re-betting.</td>
+        <td>Uncommitted objectives absorb small surprises. Bigger changes mean renegotiating dependencies across teams, so they tend to wait for Inspect &amp; Adapt and the next PI.</td>
       </tr>
 
       <tr>
@@ -1862,6 +1896,7 @@
         <td>Variable: matched to maturity stage. 1 week (ideate) → 1 year (mature).</td>
         <td>Fixed: quarterly. Some orgs add annual layer.</td>
         <td>Fixed: 6 weeks. No exceptions.</td>
+        <td>Fixed cadence: the whole train shares one PI calendar.</td>
       </tr>
 
       <tr>
@@ -1872,6 +1907,7 @@
         <td>High. Executor writes their own GPS. Scope above sets the constraint, everything inside is yours.</td>
         <td>Depends on implementation. Ranges from heavy top-down cascade to full team ownership.</td>
         <td>High within cycle. Team has full autonomy over execution. Zero between cycles: betting table decides what's next.</td>
+        <td>High over how, low over what. Teams plan and estimate their own work. Features come from the backlog above.</td>
       </tr>
 
       <tr>
@@ -1882,15 +1918,51 @@
         <td>The destination is stable but the path will change. You need to navigate, not just track.</td>
         <td>The destination is clear, measurable, and the path is trusted enough to commit to outcomes for a fixed period.</td>
         <td>The problem is understood well enough to bound the investment, but the solution path is open within that boundary.</td>
+        <td>Many teams with hard dependencies (hardware, regulation, legacy) that can't be cut yet. Coordination cost is the main problem.</td>
       </tr>
 
     </tbody>
   </table>
+  </div>
 
   <div class="comp-footer">
     <strong>Why separate positioning from strategy?</strong> When the two are mixed, changing your approach feels like admitting failure. People stick with broken strategies because changing them means changing their "goals." Separating them gives explicit permission to adapt the route while keeping the destination stable. This is the structural insight that GPS adds to the conversation.
     <br><br>
     <strong>These frameworks aren't mutually exclusive.</strong> GPS absorbs OKR terminology: Goal = Objective, Positioning = Key Results, Strategy = Initiatives. If you already use OKRs, GPS adds the missing strategy layer and the infinite time horizon without replacing what works.
+  </div>
+
+  <!-- GPS AND SAFe PI PLANNING -->
+  <div class="comp-deep">
+    <h3>GPS inside SAFe: does PI Planning kill agility?</h3>
+
+    <p><strong>Not by design. Often in practice.</strong> A Planning Interval is a goal cycle with a fixed length, and PI Planning is the strategizing session for a whole release train. Uncommitted objectives give buffer. The trouble starts when the event's output turns from a set of goals into a plan.</p>
+
+    <details class="comp-more">
+    <summary>Expand: why it drifts, and how to run GPS within a release train</summary>
+
+    <p>Three things push it there. First, the planning board maps features to iterations, so the feature list becomes both the route and the measure of success. Changing the route then feels like failing the PI: the same trap that separating positioning from strategy exists to avoid. Second, the predictability measure only rewards one of the <a href="#endings" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">four endings of a journey</a>: arriving as planned. Learning mid-PI that a goal can't be reached, or finding something more valuable, lowers the score. Third, changing course means renegotiating dependencies across teams. That costs enough that people avoid it, even when what they learned says they need to.</p>
+
+    <p>The root cause is structural. PI Planning takes dependencies as a given and coordinates around them. The heavier the planning event, the more coupled the organization. Reducing those dependencies does more for agility than any change to the event.</p>
+
+    <h4 style="font-size: 14px; margin: 24px 0 8px;">Running GPS within a release train</h4>
+
+    <table class="map-table">
+      <thead><tr><th>SAFe</th><th>GPS</th></tr></thead>
+      <tbody>
+        <tr><td>Strategic themes, portfolio vision</td><td>Infinite GPS. Add what's missing: one metric that matters and a flywheel.</td></tr>
+        <tr><td>Planning Interval</td><td>Cycle GPS. The PI length is the battery for the journey.</td></tr>
+        <tr><td>PI objectives</td><td>Goal and positioning, written as current → target, not as a list of features.</td></tr>
+        <tr><td>Feature backlog, WSJF</td><td>Options the strategy chooses between. Add a strategy statement per objective: what wins at a fork.</td></tr>
+        <tr><td>Iteration planning, standups</td><td>Immediate GPS.</td></tr>
+        <tr><td>ART sync, system demo</td><td>Check-ins. Ask in GPS order: strategy first, then targets, then the goal.</td></tr>
+        <tr><td>Inspect &amp; Adapt</td><td>Review. Name which of the four endings you hit, and report what you learned alongside predictability.</td></tr>
+      </tbody>
+    </table>
+
+    <p>Treat the planning board as a map of dependencies, not a promise of scope. That keeps what PI Planning does well (getting a hundred people to see the same picture) without turning the next ten weeks into a fixed route.</p>
+
+    <p class="comp-source">Based on Core SAFe 6.0. Scaled Agile's AI-Native SAFe (June 2026) moves in the same direction: a one-day PI Outcome Planning anchored to outcomes instead of feature commitments, and a short Sense &amp; Respond event every iteration in place of the end-of-PI Inspect &amp; Adapt.</p>
+    </details>
   </div>
 
 </div>
